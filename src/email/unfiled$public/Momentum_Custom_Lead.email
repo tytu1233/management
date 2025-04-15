@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to [Company Name]</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #ececec; color: #222;">
+  <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background-color: #ececec; padding: 30px 0;">
+    <tr>
+      <td align="center">
+        <table role="presentation" width="580" cellspacing="0" cellpadding="0" border="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden;">
+          <!-- Header -->
+          <tr>
+            <td style="background-color: #ffc6c0; padding: 40px 20px; text-align: center; position: relative;">
+<img src='https://i.postimg.cc/5XhgPs4x/LOGO-png-1.png' border='0' alt='LOGO'/>
+              <h1 style="color: #ffffff; font-size: 28px; margin: 0; font-weight: 700; letter-spacing: 1px;">Hello, {!Lead.FirstName} {!Lead.LastName}!</h1>
+              <p style="color: #ffffff; font-size: 16px; margin: 10px 0 0; opacity: 0.9;">Thanks for connecting with Momentum Events</p>
+            </td>
+          </tr>
+          <!-- Body -->
+          <tr>
+            <td style="padding: 25px 35px;">
+              <p style="font-size: 16px; line-height: 1.6; margin: 0 0 20px;">
+                We’re so excited you reached out! At <span style="color: #ff6f61; font-weight: bold;">Momentum Events</span>, we specialize in crafting events that leave lasting impressions—be it a wedding, corporate event, or milestone celebration.
+              </p>
+              <div style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+                <p style="font-size: 16px; line-height: 1.6; margin: 0 0 10px; font-weight: bold;">What’s Next?</p>
+                <p style="font-size: 15px; line-height: 1.5; margin: 0 0 10px;">✓ Expect a call or email from us within <span style="font-weight: bold;">24 - 48 hours</span>.</p>
+                <p style="font-size: 15px; line-height: 1.5; margin: 0 0 10px;">✓ If you want to contact with us use momentum.events@event.com</p>
+<p style="font-size: 15px; line-height: 1.5; margin: 0;">✓ Do not reply to this email, it is auto-generated</p>
+              </div>
+              <p style="font-size: 16px; line-height: 1.6; margin: 0;">
+                Curious about our work? Explore our <a href="[insert link]" style="color: #ff6f61; text-decoration: underline; font-weight: bold;">latest projects</a> or reach us at <span style="font-weight: bold;">+111 111 111</span>.
+              </p>
+            </td>
+          </tr>
+          <!-- Footer -->
+          <tr>
+            <td style="background-color: #222; padding: 20px; text-align: center; font-size: 14px; color: #ffffff;">
+              <p style="margin: 0 0 8px;">Cheers,<br><strong>Momentum Events Team</strong></p>
+              <p style="margin: 0;">
+                <a href="mailto:momentum.events@event.com" style="color: #ff6f61; text-decoration: none;">momentum.events@event.com</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
