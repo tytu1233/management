@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  # DEVELOP - DONE
+  # DEVELOP - DONE#
   # push on develop - validate
   validate-develop:
     runs-on: ubuntu-latest
