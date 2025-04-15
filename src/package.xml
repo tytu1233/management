@@ -28,5 +28,33 @@
         <members>*</members>
         <name>StaticResource</name>
     </types>
+    <types>
+        <members>Momentum_Events</members>
+        <name>CustomApplication</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <members>Lead</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>Contact_Methods</members>
+        <members>Event_Types</members>
+        <name>GlobalValueSet</name>
+    </types>
+    <types>
+        <members>Event_Manager</members>
+        <members>Event_Users</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
+        <members>EventGuests</members>
+        <members>EventManager</members>
+        <name>PermissionSetGroup</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <name>SharingRules</name>
+    </types>
     <version>63.0</version>
 </Package>

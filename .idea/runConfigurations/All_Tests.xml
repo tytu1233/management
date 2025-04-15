@@ -5,8 +5,8 @@
     <option name="apexLogLevel" value="DEBUG" />
     <option name="calloutsLogLevel" value="INFO" />
     <option name="changedOnly" value="false" />
-    <option name="connectionName" value="DevOrg Connection" />
-    <option name="connectionType" value="OAUTH" />
+    <option name="connectionName" value="Momentum" />
+    <option name="connectionType" value="MDAPI" />
     <option name="contextConfiguration" value="false" />
     <option name="dataAccessLogLevel" value="INFO" />
     <option name="databaseLogLevel" value="INFO" />
@@ -36,8 +36,8 @@
     <option name="apexLogLevel" value="DEBUG" />
     <option name="calloutsLogLevel" value="INFO" />
     <option name="changedOnly" value="false" />
-    <option name="connectionName" value="DevOrg Connection" />
-    <option name="connectionType" value="OAUTH" />
+    <option name="connectionName" value="Momentum" />
+    <option name="connectionType" value="MDAPI" />
     <option name="contextConfiguration" value="false" />
     <option name="dataAccessLogLevel" value="INFO" />
     <option name="databaseLogLevel" value="INFO" />
