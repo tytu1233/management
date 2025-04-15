@@ -37,11 +37,14 @@ jobs:
         run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
 
       - name: Authenticate to Dev Validation Org
-        run: sf org login jwt --client-id ${{ secrets.SF_DEV_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --instance-url ${{ secrets.SF_DEV_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_DEV_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --instance-url ${{ secrets.SF_DEV_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on Dev Validation Org
-        run: sf project deploy validate --source-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }}
-        working-directory: .
+        run: |
+          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
 
   # PR on QA - deploy after merge
   deploy-qa:
