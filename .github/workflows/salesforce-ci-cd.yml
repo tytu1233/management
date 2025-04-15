@@ -36,7 +36,7 @@ jobs:
         run: sf org login jwt --client-id ${{ secrets.SF_DEV_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --instance-url ${{ secrets.SF_DEV_LOGIN_URL }} --set-default
 
       - name: Validate changes on Dev Validation Org
-        run: sf project deploy validate --source-dir src --target-org default
+        run: sf project deploy validate --source-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }}
         working-directory: .
 
   # PR on QA - deploy after merge
