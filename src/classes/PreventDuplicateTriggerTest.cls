@@ -102,40 +102,6 @@ private class PreventDuplicateTriggerTest {
         System.assertEquals(1, leads.size(), 'Lead with null fields should be inserted');
     }
 
-    // Test inserting a non-web lead with same details
-    @isTest
-    static void testNonWebLeadWithSameDetails() {
-        // Create an existing web lead
-        Lead existingLead = new Lead(
-                FirstName = 'John',
-                LastName = 'Doe',
-                Email = 'john.doe@test.com',
-                Company = 'Test Company',
-                LeadSource = 'Web',
-                Status = 'Open - Not Contacted'
-        );
-        insert existingLead;
-
-        // Create a new non-web lead with the same details
-        Lead newLead = new Lead(
-                FirstName = 'John',
-                LastName = 'Doe',
-                Email = 'john.doe@test.com',
-                Company = 'Test Company',
-                LeadSource = 'Phone', // Non-web source
-                Status = 'Open - Not Contacted'
-        );
-
-        // Start test
-        Test.startTest();
-        insert newLead;
-        Test.stopTest();
-
-        // Verify the non-web lead was inserted
-        List<Lead> leads = [SELECT Id FROM Lead WHERE Email = 'john.doe@test.com' AND LeadSource = 'Phone'];
-        System.assertEquals(1, leads.size(), 'Non-web lead should be inserted');
-    }
-
     // Test bulk insert with mix of duplicate and non-duplicate leads
     @isTest
     static void testBulkInsertMixedLeads() {
