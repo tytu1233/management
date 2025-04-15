@@ -64,13 +64,6 @@
         <name>SharingRules</name>
     </types>
     <types>
-        <members>unfiled$public</members>
-        <members>unfiled$public/Momentum_Custom_Lead</members>
-        <members>unfiled$public/Momentum_Leads</members>
-        <members>unfiled$public/Template_For_Lead</members>
-        <name>EmailTemplate</name>
-    </types>
-    <types>
         <members>MomentumContact</members>
         <members>MomentumEvents</members>
         <members>MomentumHome</members>
