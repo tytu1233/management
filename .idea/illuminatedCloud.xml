@@ -4,10 +4,10 @@
     <option name="connections">
       <list>
         <IlluminatedCloudConnection>
-          <option name="connectionName" value="Momentum" />
+          <option name="connectionName" value="Momentum - QA" />
           <option name="connectionType" value="MDAPI" />
           <option name="defaultModuleName" value="DevOrg Connection" />
-          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/Momentum/OfflineSymbolTable.zip" />
+          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/Momentum___QA/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>
     </option>

@@ -35,6 +35,13 @@
     <types>
         <members>Account</members>
         <members>Lead</members>
+        <members>Contact</members>
+        <members>Opportunity</members>
+        <members>Order</members>
+        <members>Pricebook2</members>
+        <members>Product2</members>
+        <members>Quote</members>
+        <members>Case</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -48,13 +55,103 @@
         <name>PermissionSet</name>
     </types>
     <types>
-        <members>EventGuests</members>
         <members>EventManager</members>
+        <members>EventUser</members>
         <name>PermissionSetGroup</name>
     </types>
     <types>
         <members>Account</members>
         <name>SharingRules</name>
+    </types>
+    <types>
+        <members>unfiled$public</members>
+        <members>unfiled$public/Momentum_Custom_Lead</members>
+        <members>unfiled$public/Momentum_Leads</members>
+        <members>unfiled$public/Template_For_Lead</members>
+        <name>EmailTemplate</name>
+    </types>
+    <types>
+        <members>MomentumContact</members>
+        <members>MomentumEvents</members>
+        <members>MomentumHome</members>
+        <members>MomentumProducts</members>
+        <members>MomentumQuote</members>
+        <members>Momentum_Events_UtilityBar</members>
+        <members>test</members>
+        <members>Lead_Record_Page</members>
+        <members>Lead_Record_Page1</members>
+        <name>FlexiPage</name>
+    </types>
+    <types>
+        <members>Create_Order_Automatically_From_Opportunity</members>
+        <name>Flow</name>
+    </types>
+    <types>
+        <name>FlowDefinition</name>
+    </types>
+    <types>
+        <members>Account-Event</members>
+        <members>Contact-Event</members>
+        <members>Lead-Event</members>
+        <members>Opportunity-Event</members>
+        <members>Order-Event</members>
+        <members>Product2-Event</members>
+        <members>Quote-Event</members>
+        <name>Layout</name>
+    </types>
+    <types>
+        <members>LeadConvertSettings</members>
+        <name>LeadConvertSettings</name>
+    </types>
+    <types>
+        <members>Template</members>
+        <name>Letterhead</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <members>Address</members>
+        <members>Contact</members>
+        <members>Individual</members>
+        <name>MatchingRules</name>
+    </types>
+    <types>
+        <members>Lead.Name_And_LastName</members>
+        <members>Lead.Name_LastName_And_Email_Exists</members>
+        <name>MatchingRule</name>
+    </types>
+    <types>
+        <members>Event_Management_Lead_Path</members>
+        <name>PathAssistant</name>
+    </types>
+    <types>
+        <members>Account</members>
+        <members>LeadConfig</members>
+        <members>Order</members>
+        <name>Settings</name>
+    </types>
+    <types>
+        <members>logo</members>
+        <members>logoremovebgpreview</members>
+        <name>ContentAsset</name>
+    </types>
+    <types>
+        <members>LetterHead</members>
+        <members>LetterHead/Logo</members>
+        <members>LetterHead/Logo_150x150</members>
+        <name>Document</name>
+    </types>
+    <types>
+        <members>Account.Standard_Account_Duplicate_Rule</members>
+        <members>Contact.Standard_Contact_Duplicate_Rule</members>
+        <members>Lead.Allow_for_Web_to_Lead</members>
+        <members>Lead.Custom_Lead_duplicate_rule</members>
+        <members>Lead.Name_And_LastName</members>
+        <members>Lead.Standard_Lead_Duplicate_Rule</members>
+        <name>DuplicateRule</name>
+    </types>
+    <types>
+        <members>Case.ChangePriorityToHigh</members>
+        <name>WorkflowFieldUpdate</name>
     </types>
     <version>63.0</version>
 </Package>
