@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Conference</fullName>
+        <default>false</default>
+        <label>Conference</label>
+    </customValue>
+    <customValue>
+        <fullName>Wedding</fullName>
+        <default>false</default>
+        <label>Wedding</label>
+    </customValue>
+    <customValue>
+        <fullName>Birthdays</fullName>
+        <default>false</default>
+        <label>Birthdays</label>
+    </customValue>
+    <customValue>
+        <fullName>Corporate Event</fullName>
+        <default>false</default>
+        <label>Corporate Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Fundraiser</fullName>
+        <default>false</default>
+        <label>Fundraiser</label>
+    </customValue>
+    <customValue>
+        <fullName>Trade Show</fullName>
+        <default>false</default>
+        <label>Trade Show</label>
+    </customValue>
+    <customValue>
+        <fullName>Concert</fullName>
+        <default>false</default>
+        <label>Concert</label>
+    </customValue>
+    <customValue>
+        <fullName>Private Party</fullName>
+        <default>false</default>
+        <label>Private Party</label>
+    </customValue>
+    <customValue>
+        <fullName>Sporting Event</fullName>
+        <default>false</default>
+        <label>Sporting Event</label>
+    </customValue>
+    <customValue>
+        <fullName>Seminar/Workshop</fullName>
+        <default>false</default>
+        <label>Seminar/Workshop</label>
+    </customValue>
+    <customValue>
+        <fullName>Festival</fullName>
+        <default>false</default>
+        <label>Festival</label>
+    </customValue>
+    <customValue>
+        <fullName>--None--</fullName>
+        <default>false</default>
+        <isActive>false</isActive>
+        <label>--None--</label>
+    </customValue>
+    <masterLabel>Event Types</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>
