@@ -1,0 +1,35 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - '*'  # Uruchamia się przy pushu do dowolnego brancha
+  pull_request:
+    branches:
+      - '*'  # Uruchamia się przy PR do dowolnego brancha
+
+jobs:
+  test-workflow:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout kodu z repozytorium
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Zainstaluj Node.js (potrzebne dla Salesforce CLI)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # Zainstaluj Salesforce CLI
+      - name: Install Salesforce CLI
+        run: |
+          npm install @salesforce/cli --global
+          sf --version
+
+      # Prostą komenda testowa
+      - name: Test Workflow
+        run: |
+          echo "Workflow działa poprawnie!"
+          sf --help  # Wyświetla pomoc dla Salesforce CLI
