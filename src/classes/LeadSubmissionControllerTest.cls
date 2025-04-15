@@ -89,10 +89,10 @@ private class LeadSubmissionControllerTest {
     @isTest
     static void testCreateAndVerifyLead_Exception() {
         // Test data
-        String firstName = 'John';
-        String lastName = 'Doe';
+        String firstName = 'JohnSS';
+        String lastName = 'DoeSS';
         String company = 'Test Company';
-        String email = 'john.doe@test.com';
+        String email = 'john.doeSS@test.com';
 
         // Simulate an exception by passing invalid data or forcing an error
         // For this example, we assume an exception might occur during DML
@@ -115,17 +115,17 @@ private class LeadSubmissionControllerTest {
     @isTest
     static void testCreateAndVerifyLead_TrimAndCase() {
         // Test data with extra spaces and mixed case
-        String firstName = '  John  ';
-        String lastName = '  Doe  ';
+        String firstName = '  JohnZZZ  ';
+        String lastName = '  DoeZZZ  ';
         String company = 'Test Company';
-        String email = '  JOHN.DOE@TEST.COM  ';
+        String email = '  JOHN.DOESZZZZZ@TEST.COM  ';
 
         // Create an existing lead with trimmed and lowercase values
         Lead existingLead = new Lead(
-                FirstName = 'John',
-                LastName = 'Doe',
+                FirstName = 'JohnasFFSA',
+                LastName = 'DoeDGSG',
                 Company = 'Existing Company',
-                Email = 'john.doe@test.com',
+                Email = 'john.doeBSDB@test.com',
                 LeadSource = 'Web',
                 Status = 'Open - Not Contacted'
         );
