@@ -6,14 +6,10 @@ on:
       - develop
       - qa
       - main
-    paths:
-      - 'src/**'
   pull_request:
     branches:
       - qa
       - main
-    paths:
-      - 'src/**'
 
 jobs:
   # DEVELOP - DONE#
