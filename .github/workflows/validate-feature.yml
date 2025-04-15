@@ -37,4 +37,4 @@ jobs:
       # Walidacja na QA
       - name: Validate changes on QA
         run: |
-          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }}
+          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }} --test-level RunLocalTests
