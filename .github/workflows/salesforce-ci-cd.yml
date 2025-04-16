@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  # DEVELOP - DONE# TODO WORKS FOR SURE DIFFERENCES IN TWO LAST OPTIONS
+  # DEVELOP - DONE
   # push on develop - validate
   validate-develop:
     runs-on: ubuntu-latest
@@ -94,6 +94,7 @@ jobs:
         run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }} --test-level RunLocalTests
         working-directory: .
 
+  # VALIDATION
   # push on QA - validate
   validate-qa:
     runs-on: ubuntu-latest
