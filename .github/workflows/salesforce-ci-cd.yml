@@ -40,7 +40,7 @@ jobs:
 
       - name: Validate changes on Dev Validation Org
         run: |
-          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
+          sf project deploy validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
 
   # PR on QA - deploy after merge
   deploy-qa:
