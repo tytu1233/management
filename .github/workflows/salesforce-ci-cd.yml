@@ -8,12 +8,13 @@ on:
     branches:
       - qa
       - main
+      - develop
     types: [opened, synchronize, closed]
 
 jobs:
-  validate-qa-on-develop-push:
+  validate-qa-on-develop-pr:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'develop' && github.event.action != 'closed'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
