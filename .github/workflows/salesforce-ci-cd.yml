@@ -1,0 +1,112 @@
+name: Salesforce CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - qa
+      - main
+      - develop
+    types: [opened, synchronize, closed]
+
+jobs:
+  validate-qa-on-develop-pr:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'develop' && github.event.action != 'closed'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate to QA Org
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --alias qa-org --set-default
+          rm server.key
+
+      - name: Validate changes on QA Org
+        run: sf project deploy validate --source-dir force-app --target-org qa-org --test-level RunLocalTests
+
+  deploy-qa-on-merge:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'qa' && github.event.pull_request.head.ref == 'develop'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate to QA Org
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --alias qa-org --set-default
+          rm server.key
+
+      - name: Deploy to QA Org
+        run: sf project deploy start --source-dir force-app --target-org qa-org --test-level RunLocalTests --wait 30
+
+  validate-prod-on-pr:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'qa' && github.event.action != 'closed'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate to Production Org
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --alias prod-org --set-default
+          rm server.key
+
+      - name: Validate changes on Production Org
+        run: sf project deploy validate --source-dir force-app --target-org prod-org --test-level RunLocalTests
+
+  deploy-prod-on-merge:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'qa'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Salesforce CLI
+        run: npm install -g @salesforce/cli
+
+      - name: Authenticate to Production Org
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --alias prod-org --set-default
+          rm server.key
+
+      - name: Validate changes on Production Org
+        run: sf project deploy validate --source-dir force-app --target-org prod-org --test-level RunLocalTests
+
+      - name: Deploy to Production Org
+        run: sf project deploy start --source-dir force-app --target-org prod-org --test-level RunLocalTests --wait 30

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Events_Held_cannot_be_negative</fullName>
+    <active>true</active>
+    <errorConditionFormula>Total_Events_Held__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>Total_Events_Held__c</errorDisplayField>
+    <errorMessage>Complete this field with a positive value.</errorMessage>
+</ValidationRule>

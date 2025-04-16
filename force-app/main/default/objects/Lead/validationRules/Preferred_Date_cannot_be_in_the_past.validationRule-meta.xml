@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Date_cannot_be_in_the_past</fullName>
+    <active>true</active>
+    <errorConditionFormula>Preferred_Date__c &lt; NOW()</errorConditionFormula>
+    <errorDisplayField>Preferred_Date__c</errorDisplayField>
+    <errorMessage>Complete this field with a correct date in future.</errorMessage>
+</ValidationRule>

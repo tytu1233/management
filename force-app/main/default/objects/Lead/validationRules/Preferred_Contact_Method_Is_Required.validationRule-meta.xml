@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Preferred_Contact_Method_Is_Required</fullName>
+    <active>true</active>
+    <description>Ask contact about the preferred method of contact</description>
+    <errorConditionFormula>AND(
+OR(
+ ISPICKVAL( Status , &quot;Working - Contacted&quot;),
+ISPICKVAL( Status , &quot;Working - Qualified&quot;),
+ISPICKVAL( Status , &quot;Working - Proposal Sent&quot;),
+ISPICKVAL( Status , &quot;Closed - Negotiation&quot;)
+),
+ISBLANK(TEXT( Preferred_Contact_Method__c ))
+)</errorConditionFormula>
+    <errorDisplayField>Preferred_Contact_Method__c</errorDisplayField>
+    <errorMessage>At this stage of lead you need to know what is customer preferred contact method</errorMessage>
+</ValidationRule>

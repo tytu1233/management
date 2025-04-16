@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Base_price_not_negative</fullName>
+    <active>true</active>
+    <errorConditionFormula>Base_Price__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>Base_Price__c</errorDisplayField>
+    <errorMessage>Complete this field with a positive amount.</errorMessage>
+</ValidationRule>

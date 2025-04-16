@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Momentum</fullName>
+    <fields>AccountId</fields>
+    <fields>Name</fields>
+    <fields>Title</fields>
+    <fields>Birthdate</fields>
+    <fields>Department</fields>
+    <fields>Email</fields>
+    <fields>ReportsToId</fields>
+    <fields>LeadSource</fields>
+    <fields>MailingAddress</fields>
+    <fields>MobilePhone</fields>
+    <label>Momentum</label>
+</CompactLayout>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Budget_Range_Is_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+OR(
+ISPICKVAL( Status , &quot;Working - Qualified&quot;),
+ISPICKVAL( Status , &quot;Working - Proposal Sent&quot;),
+ISPICKVAL( Status , &quot;Closed - Negotiation&quot;),
+ISPICKVAL( Status , &quot;Closed - Converted&quot;)
+),
+ISBLANK( TEXT(Budget_Range__c) )
+)</errorConditionFormula>
+    <errorDisplayField>Budget_Range__c</errorDisplayField>
+    <errorMessage>Complete this field with a value from list.</errorMessage>
+</ValidationRule>

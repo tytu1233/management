@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entertainment_required_attendees</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(  Entertainment_Required__c  = TRUE, Number_Of_Attendees__c &lt;= 0)</errorConditionFormula>
+    <errorDisplayField>Number_Of_Attendees__c</errorDisplayField>
+    <errorMessage>Complete this field with a number of attendees.</errorMessage>
+</ValidationRule>

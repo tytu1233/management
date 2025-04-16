@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entertainment_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Additional attractions like music, decorations etc.</description>
+    <label>Entertainment Required</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

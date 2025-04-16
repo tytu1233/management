@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>test</fullName>
+    <fields>IsActive</fields>
+    <fields>Base_Price__c</fields>
+    <fields>Capacity__c</fields>
+    <fields>Cost_Per_Person__c</fields>
+    <fields>CreatedById</fields>
+    <fields>LastModifiedById</fields>
+    <label>test</label>
+</CompactLayout>
