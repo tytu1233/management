@@ -4,7 +4,7 @@
 
 @RestResource(UrlMapping='/lead/crud')
 global without sharing class LeadCrudOperations {
-    private String hello;
+    private String hello = 'DARKEST DANGUEON';
     public static List<ErrorResponse> errors = new List<ErrorResponse>();
     @HttpGet
     global static void getLead() {
