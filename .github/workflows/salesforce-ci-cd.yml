@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  # DEVELOP - DONE# TODO WORKS FOR SURE DIFFERENCES IN TWO LAST OPTIONS
+  # DEVELOP - DONE
   # push on develop - validate
   validate-develop:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
 
       - name: Validate changes on Dev Validation Org
         run: |
-          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
+          sf project deploy validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
 
   # PR on QA - deploy after merge
   deploy-qa:
@@ -66,7 +66,6 @@ jobs:
 
       - name: Deploy to QA Org
         run: sf project deploy start --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }}
-        working-directory: .
 
   validate-production-after-qa:
     runs-on: ubuntu-latest
@@ -92,7 +91,6 @@ jobs:
 
       - name: Validate changes on Production Org
         run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }} --test-level RunLocalTests
-        working-directory: .
 
   # push on QA - validate
   validate-qa:
@@ -118,7 +116,6 @@ jobs:
 
       - name: Validate changes on QA Org
         run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }} --test-level RunLocalTests
-        working-directory: .
 
   #PRODUCTION - DONE
 
@@ -145,7 +142,6 @@ jobs:
 
       - name: Validate changes on Prod Validation Org
         run: sf project deploy validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }}
-        working-directory: .
 
   # PR on main - validate then deploy
   validate-and-deploy-prod:
@@ -171,8 +167,6 @@ jobs:
 
       - name: Validate changes on Prod Validation Org
         run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }} --test-level RunLocalTests
-        working-directory: .
 
       - name: Deploy to Production Org
         run: sf project deploy start --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }}
-        working-directory: .
