@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - qa
-      - master
+      - main
     types: [opened, synchronize, closed]
 
 jobs:
@@ -61,7 +61,7 @@ jobs:
 
   validate-prod-on-pr:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'master' && github.event.pull_request.head.ref == 'qa' && github.event.action != 'closed'
+    if: github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'qa' && github.event.action != 'closed'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -85,7 +85,7 @@ jobs:
 
   deploy-prod-on-merge:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'master' && github.event.pull_request.head.ref == 'qa'
+    if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.event.pull_request.merged == true && github.event.pull_request.base.ref == 'main' && github.event.pull_request.head.ref == 'qa'
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
