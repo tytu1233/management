@@ -12,7 +12,7 @@ on:
       - main
 
 jobs:
-  # DEVELOP - DONE
+  # DEVELOP - DONE# TODO WORKS FOR SURE DIFFERENCES IN TWO LAST OPTIONS
   # push on develop - validate
   validate-develop:
     runs-on: ubuntu-latest
@@ -33,11 +33,14 @@ jobs:
         run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
 
       - name: Authenticate to Dev Validation Org
-        run: sf org login jwt --client-id ${{ secrets.SF_DEV_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --instance-url ${{ secrets.SF_DEV_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_DEV_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --instance-url ${{ secrets.SF_DEV_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on Dev Validation Org
-        run: sf project deploy validate --source-dir src --target-org default
-        working-directory: .
+        run: |
+          sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_DEV_DEPLOYMENT_USER }} --test-level RunLocalTests
 
   # PR on QA - deploy after merge
   deploy-qa:
@@ -55,14 +58,14 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Create server.key for JWT
-        run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
-
       - name: Authenticate to QA Org
-        run: sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Deploy to QA Org
-        run: sf project deploy start --source-dir src --target-org default
+        run: sf project deploy start --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }}
         working-directory: .
 
   validate-production-after-qa:
@@ -81,14 +84,14 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Create server.key for JWT
-        run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
-
       - name: Authenticate to Production Org
-        run: sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on Production Org
-        run: sf project deploy validate --source-dir src --target-org default
+        run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }} --test-level RunLocalTests
         working-directory: .
 
   # push on QA - validate
@@ -107,14 +110,14 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Create server.key for JWT
-        run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
-
       - name: Authenticate to QA Org
-        run: sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_QA_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_QA_USERNAME }} --instance-url ${{ secrets.SF_QA_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on QA Org
-        run: sf project deploy validate --source-dir src --target-org default
+        run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_QA_USERNAME }} --test-level RunLocalTests
         working-directory: .
 
   #PRODUCTION - DONE
@@ -134,14 +137,14 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Create server.key for JWT
-        run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
-
       - name: Authenticate to Prod Validation Org
-        run: sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on Prod Validation Org
-        run: sf project deploy validate --source-dir src --target-org default
+        run: sf project deploy validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }}
         working-directory: .
 
   # PR on main - validate then deploy
@@ -160,19 +163,16 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install -g @salesforce/cli
 
-      - name: Create server.key for JWT
-        run: echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
-
       - name: Authenticate to Prod Validation Org
-        run: sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+        run: |
+          echo "${{ secrets.SF_DEV_JWT_KEY }}" > server.key
+          sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
+          rm server.key
 
       - name: Validate changes on Prod Validation Org
-        run: sf project deploy validate --source-dir src --target-org default
+        run: sf deploy metadata validate --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }} --test-level RunLocalTests
         working-directory: .
 
-      - name: Authenticate to Production Org
-        run: sf org login jwt --client-id ${{ secrets.SF_PROD_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_PROD_USERNAME }} --instance-url ${{ secrets.SF_PROD_LOGIN_URL }} --set-default
-
       - name: Deploy to Production Org
-        run: sf project deploy start --source-dir src --target-org default
+        run: sf project deploy start --metadata-dir src --target-org ${{ secrets.SF_PROD_USERNAME }}
         working-directory: .
