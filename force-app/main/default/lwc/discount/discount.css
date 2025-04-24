@@ -1,0 +1,14 @@
+/**
+ * Created by patryk.witkowski_bri on 4/23/2025.
+ */
+
+ .slds-tabs_default__item {
+     background-image: none !important;
+ }
+
+ .container {
+     background-color: white;
+     height: 100%;
+     padding: 0;
+     margin: 0;
+ }

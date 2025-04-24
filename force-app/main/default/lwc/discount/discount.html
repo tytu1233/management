@@ -1,0 +1,38 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/23/2025.
+ -->
+
+<!-- Discount -->
+<template>
+    <div class="container">
+        <lightning-tabset>
+            <lightning-tab label="Available discounts">
+                <template lwc:if={discounts.data}>
+                    <template for:each={discounts.data} for:item="discount">
+                        <div key={discount.Name}>
+                            <p key={discount.Id}>
+                                {discount.Id} - {discount.Name} -
+                                <template if:true={discount.Discount_Percentage__c}>
+                                    {discount.Discount_Percentage__c}%
+                                </template>
+                                <template if:true={discount.Discount_Amount__c}>
+                                    <template if:true={discount.Discount_Percentage__c}> / </template>
+                                    {discount.Discount_Amount__c} zły
+                                </template>
+                                - {discount.Discount_Type__c}
+                            </p>
+                        </div>
+                    </template>
+                </template>
+            </lightning-tab>
+            <lightning-tab label="Add discount" title="2nd tab extended title">
+                <c-discount-global-state></c-discount-global-state>
+            </lightning-tab>
+            <lightning-tab label="Manage global discount state">
+                <lightning-card title="Button Example">
+                    <button class="custom-button" onclick={handleClick}>Custom Button</button>
+                </lightning-card>
+            </lightning-tab>
+        </lightning-tabset>
+    </div>
+</template>
