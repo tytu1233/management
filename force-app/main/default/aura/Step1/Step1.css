@@ -1,0 +1,10 @@
+/**
+ * Created by patryk.witkowski_bri on 4/23/2025.
+ */
+
+.THIS .spinner-load{
+    position: relative;
+    z-index: 1000;
+    height: 600px;
+    top: -530px;
+}
