@@ -12,15 +12,12 @@
         let targetStep = event.getParam("step");
 
         component.set("v.currentStep", targetStep);
-
         helper.loadStepComponent(component);
     },
 
     //PRODUCTS FROM STEP 1
     handleUpdateData: function(component, event, helper) {
         let eventData = event.getParam("products");
-        console.log("W EVENT DACIE");
-        console.log(eventData);
         component.set("v.data", eventData);
     },
 

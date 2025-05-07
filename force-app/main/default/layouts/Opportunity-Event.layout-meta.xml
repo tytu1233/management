@@ -44,8 +44,8 @@
                 <field>Catering_Required__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Entertainment_Required__c</field>
+                <behavior>Required</behavior>
+                <field>Event_Address__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

@@ -1,0 +1,111 @@
+/**
+ * Created by patryk.witkowski_bri on 4/28/2025.
+ */
+
+.THIS .spinner-load{
+    position: absolute;
+    z-index: 1000;
+    height: 690px;
+    top: -116px;
+}
+
+.THIS .container-products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-top: 5px;
+    border-radius: 8px;
+}
+
+.THIS .container-products--info {
+    width: 100%;
+    max-width: 600px;
+}
+
+.THIS .product-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #ffffff;
+    padding: 0 20px;
+    border-radius: 8px;
+}
+
+.THIS .product-summary--item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #333333;
+    text-transform: uppercase;
+}
+
+.THIS .product-summary--item-text {
+    width: 60%;
+    font-weight: 600;
+}
+
+.THIS .product-summary--item span[style*="width: 40%"] {
+    width: 40%;
+    text-align: right;
+    font-weight: 400;
+    color: #555555;
+}
+
+.THIS .product-summary--button {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.THIS .product-summary--button lightning-button button {
+    background-color: #0070d2;
+    color: #ffffff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+
+.THIS .product-summary--button lightning-button button:hover:not(:disabled) {
+    background-color: #005fb2;
+}
+
+.THIS .product-summary--button lightning-button button:disabled {
+    background-color: #c9c7c5;
+    cursor: not-allowed;
+}
+
+.THIS .product-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #d3d3d3;
+    font-size: 14px;
+    color: #333333;
+}
+
+@media (max-width: 600px) {
+    .THIS .container-products {
+        padding: 15px;
+    }
+
+    .THIS .product-summary--item {
+        font-size: 12px;
+    }
+
+    .THIS .product-summary--button lightning-button button {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}

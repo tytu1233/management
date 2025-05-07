@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Agentforce_Hero_Desc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hero Description Part 1</shortDescription>
+        <value>Resolve customer cases, improve sales, and anticipate customer needs with autonomous agents.</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Hero_Desc_Cont</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hero Description Part 2</shortDescription>
+        <value>When you&apos;re ready to dive in, here are three ways to start using Agentforce.</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Launch_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Launch Card Action</shortDescription>
+        <value>Start Building</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Launch_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Launch Card Description</shortDescription>
+        <value>Navigate to &lt;strong&gt;Agents&lt;/strong&gt; in Setup and select &lt;strong&gt;New Agent&lt;/strong&gt; to create one from scratch or start with a pre-built skill.</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Launch_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Launch Card Title</shortDescription>
+        <value>Build an Agent</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Learn_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Learn Card Action</shortDescription>
+        <value>Go to Salesforce Help</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Learn_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Learn Card Description</shortDescription>
+        <value>Check out an overview or dig into the details of setting up, launching, and fine-tuning Agentforce.</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Learn_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Learn Card Title</shortDescription>
+        <value>Learn About Agentforce</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Practice_Action</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Practice Card Action</shortDescription>
+        <value>Take Me to Trailhead</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Practice_Description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Practice Card Description</shortDescription>
+        <value>Follow detailed pointers and step-by-step instructions on Trailhead to practice setting up and deploying an agent.</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Practice_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Practice Card Title</shortDescription>
+        <value>Practice Creating an Agent</value>
+    </labels>
+    <labels>
+        <fullName>Agentforce_Welcome_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Welcome Hero Title</shortDescription>
+        <value>Welcome to Agentforce</value>
+    </labels>
+    <labels>
+        <fullName>CreateOrder_Step1_Products</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CreateOrder_Step1_Products</shortDescription>
+        <value>Add products</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Fetch</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_Fetch</shortDescription>
+        <value>Error during retrieving discounts.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_ModeNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_ModeNotExist</shortDescription>
+        <value>There is no such mode.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_NameRequired</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_NameRequired</shortDescription>
+        <value>Discount name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_PercentageBetweenZeroAndHundred</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_PercentageBetweenZeroAndHundred</shortDescription>
+        <value>Percentage value must be between 0 than 100.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StartBeforeEndDate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StartBeforeEndDate</shortDescription>
+        <value>&quot;Start date&quot; must be before &quot;End date&quot;.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StrategyNotConfigured</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StrategyNotConfigured</shortDescription>
+        <value>Discount strategy is not configured.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StrategyNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StrategyNotExist</shortDescription>
+        <value>Strategy for discounts does exist.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StrategyTypes_Combine</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StrategyTypes_Combine</shortDescription>
+        <value>Combine</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StrategyTypes_Maximum</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StrategyTypes_Maximum</shortDescription>
+        <value>Maximum</value>
+    </labels>
+    <labels>
+        <fullName>Discount_StrategyTypes_Minimum</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_StrategyTypes_Minimum</shortDescription>
+        <value>Minimum</value>
+    </labels>
+    <labels>
+        <fullName>Discount_ToOrderFailed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_ToOrderFailed</shortDescription>
+        <value>Failed to insert discount for order.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_TypeNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_TypeNotExist</shortDescription>
+        <value>There is no such discount type.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_TypeRequired</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_TypeRequired</shortDescription>
+        <value>Discount type is required.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Types_FixedAmount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_Types_FixedAmount</shortDescription>
+        <value>Fixed Amount</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Types_Percentage</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_Types_Percentage</shortDescription>
+        <value>Percentage</value>
+    </labels>
+    <labels>
+        <fullName>Discount_ValueGreaterThanZero</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_ValueGreaterThanZero</shortDescription>
+        <value>Discount value must be greater than zero.</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_AddDiscount</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_AddDiscount</shortDescription>
+        <value>Add discount</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Choose</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_Choose</shortDescription>
+        <value>Choose one...</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Close</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Edit</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_EditDiscount</shortDescription>
+        <value>Edit discount</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_EditSettings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_EditSettings</shortDescription>
+        <value>Edit global discount settings</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_FetchError</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_FetchError</shortDescription>
+        <value>Discounts can not be fetched at the moment. Please try again.</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Global</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_Global</shortDescription>
+        <value>Global settings</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_GlobalSettings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_GlobalSettings</shortDescription>
+        <value>Global discount setting</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_Update</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_Update</shortDescription>
+        <value>Update</value>
+    </labels>
+    <labels>
+        <fullName>Next</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_FailedUpdate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Opportunity_FailedUpdate</shortDescription>
+        <value>Failed to update the Opportunity.</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_NotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Opportunity_NotExist</shortDescription>
+        <value>Opportunity with provided ID does not exist.</value>
+    </labels>
+    <labels>
+        <fullName>Order_AddressIncompleteOrEmpty</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_AddressIncompleteOrEmpty</shortDescription>
+        <value>Complete Event Address fields with an information.</value>
+    </labels>
+    <labels>
+        <fullName>Order_DateIsNull</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_DateIsNull</shortDescription>
+        <value>Event Date field cannot be empty. Complete the field with date.</value>
+    </labels>
+    <labels>
+        <fullName>Order_FailedCreate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_FailedCreate</shortDescription>
+        <value>Failed to create the Order.</value>
+    </labels>
+    <labels>
+        <fullName>Order_FailedProductsAdd</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_FailedProductsAdd</shortDescription>
+        <value>Failed to add products to Order.</value>
+    </labels>
+    <labels>
+        <fullName>Order_FailedUpdate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_FailedUpdate</shortDescription>
+        <value>Failed to update the Order.</value>
+    </labels>
+    <labels>
+        <fullName>Order_TheSameAddressAndDate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Order_TheSameAddressAndDate</shortDescription>
+        <value>An Order with the same Event Address and Event Date already exists.</value>
+    </labels>
+    <labels>
+        <fullName>Prevent_Create_Order</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Prevent Create Order</shortDescription>
+        <value>There is an issue we cannot create an order for the specified address and date because there is already a scheduled event at that time and location.</value>
+    </labels>
+    <labels>
+        <fullName>Previous</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Previous</shortDescription>
+        <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>Step1_EnterProductName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step1_EnterProductName</shortDescription>
+        <value>Enter product name</value>
+    </labels>
+    <labels>
+        <fullName>Step1_FilterByCategory</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step1_FilterByCategory</shortDescription>
+        <value>Filter by Category</value>
+    </labels>
+    <labels>
+        <fullName>Step1_Pagination_Of</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step1_Pagination_Of</shortDescription>
+        <value>of</value>
+    </labels>
+    <labels>
+        <fullName>Step1_Pagination_Page</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step1_Pagination_Page</shortDescription>
+        <value>Page</value>
+    </labels>
+    <labels>
+        <fullName>Step1_RecordsNumber</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step1_RecordsNumber</shortDescription>
+        <value>Number of records:</value>
+    </labels>
+    <labels>
+        <fullName>Step2_CreateOrder</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step2_CreateOrder</shortDescription>
+        <value>Create Order</value>
+    </labels>
+    <labels>
+        <fullName>Step2_DiscountValue</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step2_DiscountValue</shortDescription>
+        <value>DISCOUNT VALUE</value>
+    </labels>
+    <labels>
+        <fullName>Step2_FinalPrice</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step2_FinalPrice</shortDescription>
+        <value>FINAL PRICE</value>
+    </labels>
+    <labels>
+        <fullName>Step2_OrderSummary</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step2_OrderSummary</shortDescription>
+        <value>Order summary</value>
+    </labels>
+    <labels>
+        <fullName>Step2_OrderValue</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Step2_OrderValue</shortDescription>
+        <value>ORDER VALUE</value>
+    </labels>
+    <labels>
+        <fullName>Table_ProductName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Table_ProductName</shortDescription>
+        <value>Product Name</value>
+    </labels>
+</CustomLabels>

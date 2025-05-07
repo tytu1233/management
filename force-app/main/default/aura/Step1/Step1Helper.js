@@ -6,10 +6,12 @@
     fetchProducts: function(component) {
         component.set("v.isLoading", true);
         var action = component.get("c.getProducts");
+
         action.setParams({
             "categoriesFilter": component.get("v.selectedCategories"),
             "pageSize": component.get("v.pageSize"),
-            "pageNumber": component.get("v.pageNumber")
+            "pageNumber": component.get("v.pageNumber"),
+            "searchQuery": component.get("v.searchText")
         });
         action.setCallback(this, function(response) {
             var state = response.getState();
@@ -27,6 +29,30 @@
                 console.error("Error fetching products:", errorMsg);
             }
         });
+        $A.enqueueAction(action);
+    },
+
+    fetchOpportunityProducts: function (component) {
+        let opportunityId = component.get("v.opportunityId");
+        let action = component.get("c.getOpportunityProducts");
+        let componentEvent = component.getEvent("updateData");
+        action.setParams({
+            "opportunityId": opportunityId
+        });
+
+        action.setCallback(this, function (response){
+            let status = response.getState();
+
+            if (status === "SUCCESS") {
+                console.log(response.getReturnValue());
+                component.set("v.persistData", response.getReturnValue());
+                componentEvent.setParams({
+                    "products": response.getReturnValue()
+                });
+                componentEvent.fire();
+            }
+        });
+
         $A.enqueueAction(action);
     },
 

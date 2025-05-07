@@ -1,15 +1,24 @@
-public with sharing class OpportunityProductsController {
-    @AuraEnabled(Cacheable=true)
-    public static ProductData getProducts(List<String> categoriesFilter, Integer pageSize, Integer pageNumber){
+/**
+ * Created by patryk.witkowski_bri on 5/4/2025.
+ */
+
+public class OpportunityProductsService {
+    public static ProductData getProducts(List<String> categoriesFilter, Integer pageSize, Integer pageNumber, String searchQuery){
         try {
             ProductData productData = new ProductData();
 
             String query = 'SELECT Id, Name, Base_Price__c, Family FROM Product2 WHERE Family != NULL AND IsActive = TRUE';
             String countQuery = 'SELECT COUNT() FROM Product2 WHERE Family != NULL AND IsActive = TRUE';
+            String productNameFilter = '%' + String.escapeSingleQuotes(searchQuery) + '%';
 
             if (!categoriesFilter.isEmpty()) {
                 query += ' AND Family IN :categoriesFilter';
                 countQuery += ' AND Family IN :categoriesFilter';
+            }
+
+            if(!String.isBlank(searchQuery)) {
+                query += ' AND Name LIKE :productNameFilter';
+                countQuery += ' AND Name LIKE :productNameFilter';
             }
 
             Integer totalRecords = Database.countQuery(countQuery);
@@ -36,8 +45,7 @@ public with sharing class OpportunityProductsController {
         }
     }
 
-    @AuraEnabled(Cacheable=true)
-    public static CategoryData getCategories(){
+    public static CategoryData getCategories() {
         try {
             CategoryData categoryData = new CategoryData();
             List<AggregateResult> categories = [
@@ -63,6 +71,39 @@ public with sharing class OpportunityProductsController {
         }
     }
 
+    public static List<ProductDTO> getOpportunityProducts(Id opportunityId) {
+        List<OpportunityLineItem> opportunityLineItems = [
+                SELECT Product2Id
+                FROM OpportunityLineItem
+                WHERE OpportunityId = :opportunityId
+        ];
+
+        Set<Id> productIds = new Set<Id>();
+
+        for(OpportunityLineItem opportunityLineItem : opportunityLineItems) {
+            productIds.add(opportunityLineItem.Product2Id);
+        }
+
+        List<Product2> products = [
+                SELECT Id, Name, Base_Price__c, Family
+                FROM Product2
+                WHERE Id IN :productIds
+        ];
+
+        List<ProductDTO> productDTOS = new List<ProductDTO>();
+
+        for(Product2 product : products) {
+            ProductDTO productDTO = new ProductDTO();
+            productDTO.name = product.Name;
+            productDTO.price = product.Base_Price__c;
+            productDTO.category = product.Family;
+            productDTO.productId = product.Id;
+
+            productDTOS.add(productDTO);
+        }
+
+        return productDTOS;
+    }
 
     public class ProductDTO {
         @AuraEnabled public Id productId;

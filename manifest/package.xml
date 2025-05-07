@@ -42,6 +42,8 @@
         <members>Quote</members>
         <members>Opportunity</members>
         <members>Pricebook2</members>
+        <members>Discount__c</members>
+        <members>Order_Discount__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -58,6 +60,12 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>Discount__c.Active__c</members>
+        <members>Discount__c.Discount_Amount__c</members>
+        <members>Discount__c.Discount_Percentage__c</members>
+        <members>Discount__c.Discount_Type__c</members>
+        <members>Discount__c.End_Date__c</members>
+        <members>Discount__c.Start_Date__c</members>
         <name>CustomField</name>
     </types>
     <types>
@@ -144,6 +152,91 @@
     </types>
     <types>
         <name>WebLink</name>
+    </types>
+    <types>
+        <members>Discount_Strategy_Setting.Strategy</members>
+        <members>Trigger_Action.TA_Order_CheckDateAndAddress</members>
+        <members>Trigger_Action.TA_Order_FillDateAndAddress</members>
+        <members>sObject_Trigger_Setting.Order</members>
+        <name>CustomMetadata</name>
+    </types>
+    <types>
+        <members>Discount_Strategy_Setting__mdt-en_US</members>
+        <members>Discount__c-en_US</members>
+        <name>CustomObjectTranslation</name>
+    </types>
+    <types>
+        <members>Discount__c</members>
+        <members>Discounts</members>
+        <name>CustomTab</name>
+    </types>
+    <types>
+        <members>Opportunity.Create_Order</members>
+        <name>QuickAction</name>
+    </types>
+    <types>
+        <members>Agentforce_Hero_Desc</members>
+        <members>Agentforce_Hero_Desc_Cont</members>
+        <members>Agentforce_Launch_Action</members>
+        <members>Agentforce_Launch_Description</members>
+        <members>Agentforce_Launch_Title</members>
+        <members>Agentforce_Learn_Action</members>
+        <members>Agentforce_Learn_Description</members>
+        <members>Agentforce_Learn_Title</members>
+        <members>Agentforce_Practice_Action</members>
+        <members>Agentforce_Practice_Description</members>
+        <members>Agentforce_Practice_Title</members>
+        <members>Agentforce_Welcome_Title</members>
+        <members>CreateOrder_Step1_Products</members>
+        <members>Discount_Fetch</members>
+        <members>Discount_ModeNotExist</members>
+        <members>Discount_NameRequired</members>
+        <members>Discount_PercentageBetweenZeroAndHundred</members>
+        <members>Discount_StartBeforeEndDate</members>
+        <members>Discount_StrategyNotConfigured</members>
+        <members>Discount_StrategyNotExist</members>
+        <members>Discount_StrategyTypes_Combine</members>
+        <members>Discount_StrategyTypes_Maximum</members>
+        <members>Discount_StrategyTypes_Minimum</members>
+        <members>Discount_ToOrderFailed</members>
+        <members>Discount_TypeNotExist</members>
+        <members>Discount_TypeRequired</members>
+        <members>Discount_Types_FixedAmount</members>
+        <members>Discount_Types_Percentage</members>
+        <members>Discount_ValueGreaterThanZero</members>
+        <members>LWC_Discount_AddDiscount</members>
+        <members>LWC_Discount_Cancel</members>
+        <members>LWC_Discount_Choose</members>
+        <members>LWC_Discount_Close</members>
+        <members>LWC_Discount_Edit</members>
+        <members>LWC_Discount_EditSettings</members>
+        <members>LWC_Discount_FetchError</members>
+        <members>LWC_Discount_Global</members>
+        <members>LWC_Discount_GlobalSettings</members>
+        <members>LWC_Discount_Update</members>
+        <members>Next</members>
+        <members>Opportunity_FailedUpdate</members>
+        <members>Opportunity_NotExist</members>
+        <members>Order_AddressIncompleteOrEmpty</members>
+        <members>Order_DateIsNull</members>
+        <members>Order_FailedCreate</members>
+        <members>Order_FailedProductsAdd</members>
+        <members>Order_FailedUpdate</members>
+        <members>Order_TheSameAddressAndDate</members>
+        <members>Prevent_Create_Order</members>
+        <members>Previous</members>
+        <members>Step1_EnterProductName</members>
+        <members>Step1_FilterByCategory</members>
+        <members>Step1_Pagination_Of</members>
+        <members>Step1_Pagination_Page</members>
+        <members>Step1_RecordsNumber</members>
+        <members>Step2_CreateOrder</members>
+        <members>Step2_DiscountValue</members>
+        <members>Step2_FinalPrice</members>
+        <members>Step2_OrderSummary</members>
+        <members>Step2_OrderValue</members>
+        <members>Table_ProductName</members>
+        <name>CustomLabel</name>
     </types>
     <version>63.0</version>
 </Package>

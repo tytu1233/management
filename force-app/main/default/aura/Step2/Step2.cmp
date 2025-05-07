@@ -2,19 +2,52 @@
  - Created by patryk.witkowski_bri on 4/18/2025.
  -->
 
-<aura:component>
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="OrderController">
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="parentData" type="Object[]"/>
-    <aura:attribute name="parentDataString" type="String"/>
+    <aura:attribute name="initialPrice" type="Decimal" default="0.0"/>
+    <aura:attribute name="columns" type="Object[]" />
     <aura:attribute name="step" type="String" />
+    <aura:attribute name="opportunityId" type="String" />
+    <aura:attribute name="disableButton" type="Boolean" default="false" />
+    <aura:attribute name="isLoading" type="Boolean" default="false"/>
+    <aura:attribute name="discountValue" type="Decimal" default="0.0" />
+    <aura:attribute name="finalPrice" type="Decimal" default="0.0" />
+    <aura:attribute name="discountIds" type="String[]" default="" />
 
     <div class="slds-form">
-        <h3 class="slds-text-heading_small slds-m-bottom_small">Step 2: Order summary</h3>
-        <aura:iteration items="{!v.parentData}" var="product">
-            <div>
-                <span>{!product.name}</span>
-                <span> {!product.category}</span>
+        <div style="width: 100%;text-align: center;">
+            <div class="slds-text-title_caps" style="font-size: 20px">{!$Label.c.Step2_OrderSummary}</div>
+        </div>
+        <div class="slds-p-top_small">
+            <lightning:datatable
+                    aura:id="productDatatable"
+                    keyField="productId"
+                    data="{!v.parentData}"
+                    columns="{!v.columns}"
+                    hideCheckboxColumn="true" />
+        </div>
+        <div class="container-products">
+            <div class="container-products--info">
+                <div class="product-summary">
+                    <div class="product-summary--item">
+                        <span class="product-summary--item-text">{!$Label.c.Step2_OrderValue} </span> <span style="width: 40%;">{!v.initialPrice}$</span>
+                    </div>
+                    <div class="product-summary--item">
+                        <span class="product-summary--item-text">{!$Label.c.Step2_DiscountValue} </span> <span style="width: 40%;">{!v.discountValue}$</span>
+                    </div>
+                    <div class="product-summary--item">
+                        <span class="product-summary--item-text">{!$Label.c.Step2_FinalPrice} </span> <span style="width: 40%;">{!v.finalPrice}$</span>
+                    </div>
+                    <div class="product-summary--button">
+                        <lightning:button
+                                label="{!$Label.c.Step2_CreateOrder}"
+                                disabled="{!v.disableButton}"
+                                onclick="{!c.handleSubmit}"></lightning:button>
+                    </div>
+                </div>
             </div>
-        </aura:iteration>
+        </div>
+        <lightning:spinner aura:id="spinner" style="height: 690px; top: 116px;" alternativeText="Loading" size="large" class="{!v.isLoading ? '' : 'slds-hide'}" />
     </div>
 </aura:component>

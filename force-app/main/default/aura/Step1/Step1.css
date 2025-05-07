@@ -5,6 +5,18 @@
 .THIS .spinner-load{
     position: relative;
     z-index: 1000;
-    height: 600px;
+    height: 690px;
     top: -530px;
+}
+
+.THIS .search-input {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (min-width: 48em) {
+  .THIS .slds-modal__container {
+    width: 90% !important;
+    max-width: 50rem !important;
+  }
 }

@@ -9,21 +9,20 @@
     },
 
     loadStepComponent: function(component) {
-        console.log("current data after changes")
         let currentStep = component.get("v.currentStep");
-        console.log('Current step:' + currentStep)
+        let opportunityId = component.get("v.recordId");
         let componentName = this.stepMap[currentStep];
         let currentData = component.get("v.data");
-        console.log("Current data: " + currentData)
+
         $A.createComponent(
             componentName,
             {
                 step: currentStep,
-                parentData: currentData
+                parentData: currentData,
+                opportunityId: opportunityId
             },
             function(newComponent, status, errorMessage) {
                 if (status === "SUCCESS") {
-                    console.log('Successfully created component: ' + componentName);
                     component.set("v.stepComponent", newComponent);
                 } else {
                     console.error('Error creating component: ' + componentName + ', Error: ' + errorMessage);

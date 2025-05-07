@@ -3,18 +3,26 @@
  */
 
 ({
-    doInit: function(component, event, helper) {
-        // Access parentData on initialization
-        console.log("Data in step2")
-        let parentData = component.get("v.parentData");
-        parentData.forEach(obj => console.log(obj));
-        component.set("v.parentDataString", JSON.stringify(parentData));
-        //component.set("v.parentData", JSON.parse(parentData));
-        console.log("PARSED DATA");
-        //console.log(JSON.parse(parentData))
-        console.log("Parent data in step2: " + parentData);
+    doInit: function (component, event, helper) {
+        component.set("v.columns", [
+            {label: "Product Name", fieldName: "name", type: "text", sortable: false},
+            {label: "Category", fieldName: "category", type: "text", sortable: false},
+            {
+                label: "Price",
+                fieldName: "price",
+                type: "currency",
+                sortable: false,
+                typeAttributes: {currencyCode: "USD"}
+            }
+        ]);
+        let data = component.get("v.parentData");
+        let opportunityId = component.get("v.opportunityId");
+        const price = data.reduce((acc, val) => acc += val.price, 0);
+        component.set("v.initialPrice", price);
+        helper.applyDiscounts(component, opportunityId);
     },
-    getChildData: function(component, event, helper) {
-        return component.get("v.childData");
+    handleSubmit: function (component, event, helper) {
+        let opportunityId = component.get("v.opportunityId");
+        helper.createOrder(component, opportunityId);
     }
 })

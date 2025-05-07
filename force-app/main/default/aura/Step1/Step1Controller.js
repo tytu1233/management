@@ -4,7 +4,6 @@
 
 ({
     doInit: function (component, event, helper) {
-        console.log("ON INIT");
         component.getEvent("updateData").setParams({"products": []}).fire();
         component.set("v.columns", [
             {label: "Product Name", fieldName: "name", type: "text", sortable: false},
@@ -17,8 +16,26 @@
                 typeAttributes: {currencyCode: "USD"}
             }
         ]);
-        helper.fetchProducts(component);
-        helper.fetchCategories(component);
+        Promise.allSettled([helper.fetchOpportunityProducts(component), helper.fetchProducts(component), helper.fetchCategories(component)])
+            .then((resp) => console.log(resp))
+            .catch((err) => console.log(err));
+            //helper.fetchProducts(component);
+        //helper.fetchCategories(component);
+    },
+    handleKeyUp: function (component, event, helper) {
+        const searchText = component.get("v.searchText");
+
+        let debounce = component.get("v.debounce");
+        if (debounce) {
+            clearTimeout(debounce);
+        }
+        debounce = setTimeout(() => {
+            component.set("v.searchText", searchText);
+            component.set("v.pageNumber" , 1);
+            helper.fetchProducts(component);
+        }, 500);
+
+        component.set("v.debounce", debounce);
     },
     handleRowSelection: function (component, event, helper) {
         let selectedRows = event.getParam("selectedRows");
@@ -41,7 +58,6 @@
                 );
             });
         }
-
         component.set("v.persistData", persistData);
         component.set("v.previousSelectedRows", selectedRows.slice());
         component.set("v.isUserSelection", true);

@@ -6,6 +6,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:attribute name="productsData" type="Object" default="{}"/>
     <aura:attribute name="persistData" type="Object[]" />
+    <aura:attribute name="opportunityId" type="String" />
     <aura:attribute name="selectedRowIds" type="String[]"/>
     <aura:attribute name="previousSelectedRows" type="Object[]" default="[]" />
     <aura:attribute name="isUserSelection" type="Boolean" default="true" />
@@ -16,32 +17,39 @@
     <aura:attribute name="expand" type="Boolean" default="False"/>
     <aura:attribute name="columns" type="List"/>
     <aura:attribute name="pageNumber" type="Integer" default="1" />
-    <aura:attribute name="pageSize" type="Integer" default="10" />
+    <aura:attribute name="pageSize" type="Integer" default="11" />
     <aura:attribute name="totalRecords" type="Integer" default="0" />
     <aura:attribute name="totalPages" type="Integer" default="0" />
     <aura:attribute name="isLoading" type="Boolean" default="false" />
+    <aura:attribute name="searchText" type="String" default="" />
+    <aura:attribute name="debounce" type="Integer" />
 
     <aura:registerEvent name="updateData" type="c:ProductChangeEvent" />
 
 
     <div class="slds-form">
-        <h3 class="slds-text-heading_small slds-m-bottom_small">Step 1: Add products</h3>
+        <div style="display: flex; justify-content: center;width: 100%;">
+            <div class="slds-text-title_caps" style="font-size: 20px">{!$Label.c.CreateOrder_Step1_Products}</div>
+        </div>
         <div onclick="{!c.handleClick}">
             <lightning:accordion aura:id="accordion">
-                <lightning:accordionSection name="categoryFilter" label="Filter by Category">
+                <lightning:accordionSection name="categoryFilter" label="{!$Label.c.Step1_FilterByCategory}">
                 </lightning:accordionSection>
             </lightning:accordion>
         </div>
         <aura:if isTrue="{!v.expand}">
             <div class="slds-p-left_small slds-p-bottom_small">
-                <lightning:checkboxGroup name="Filter by category"
+                <lightning:checkboxGroup name="{!$Label.c.Step1_FilterByCategory}"
                                          label=""
                                          options="{!v.categoriesData.productsCategories}"
                                          value="{!v.options}"
                                          onchange="{!c.handleChange}"/>
             </div>
         </aura:if>
-        <div slot="body">
+        <div class="search-input">
+            <lightning:input type="search" name="input1" value="{!v.searchText}" onchange="{!c.handleKeyUp}" label="{!$Label.c.Step1_EnterProductName}" />
+        </div>
+        <div slot="body" class="slds-p-top_small">
             <lightning:datatable
                 aura:id="productDatatable"
                 keyField="productId"
@@ -54,24 +62,21 @@
         </div>
 
         <div class="slds-align_absolute-center slds-p-top_small">
-            <lightning:button label="Previous"
+            <lightning:button label="{!$Label.c.Previous}"
                               iconName="utility:chevronleft"
                               disabled="{!v.pageNumber == 1}"
                               onclick="{!c.handlePrevious}" />
             <span class="slds-badge slds-m-horizontal_small">
-                    Page {!v.pageNumber} of {!v.totalPages}
-                </span>
-            <lightning:button label="Next"
+                {!$Label.c.Step1_Pagination_Page + ' '} {!v.pageNumber + ' '} {!$Label.c.Step1_Pagination_Of + ' '} {!v.totalPages}
+            </span>
+            <lightning:button label="{!$Label.c.Next}"
                               iconName="utility:chevronright"
                               disabled="{!v.pageNumber == v.totalPages}"
                               onclick="{!c.handleNext}" />
         </div>
-
-        <div class="slds-float_right">
-            <span class="slds-badge">Total Records: {!v.totalRecords}</span>
+        <div class="slds-align_absolute-center slds-p-top_small">
+            <span class="slds-badge">{!$Label.c.Step1_RecordsNumber + ' '} {!v.totalRecords}</span>
         </div>
-        <div class="{!v.isLoading ? 'spinner-load' : 'slds-hide'}">
-            <lightning:spinner aura:id="spinner" alternativeText="Loading" size="large" class="{!v.isLoading ? '' : 'slds-hide'}" />
-        </div>
+        <lightning:spinner style="height: 690px; top: 116px;" aura:id="spinner" alternativeText="Loading" size="large" class="{!v.isLoading ? '' : 'slds-hide'}" />
     </div>
 </aura:component>
