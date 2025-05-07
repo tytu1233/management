@@ -2,7 +2,7 @@
  * Created by patryk.witkowski_bri on 5/7/2025.
  */
 
-@isTest
+@IsTest
 private class DiscountSettingTest {
 
     // Mock Custom Metadata Type record for testing
