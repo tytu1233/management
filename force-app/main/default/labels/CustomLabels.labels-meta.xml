@@ -92,11 +92,25 @@
         <value>Add products</value>
     </labels>
     <labels>
+        <fullName>Discount_ClassNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_ClassNotExist</shortDescription>
+        <value>Class for given strategy wasn&apos;t created.</value>
+    </labels>
+    <labels>
         <fullName>Discount_Fetch</fullName>
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>Discount_Fetch</shortDescription>
         <value>Error during retrieving discounts.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_LWC_MetadataUpdated</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_LWC_MetadataUpdated</shortDescription>
+        <value>Metadata update enqueued successfully</value>
     </labels>
     <labels>
         <fullName>Discount_ModeNotExist</fullName>
@@ -204,6 +218,13 @@
         <value>Discount value must be greater than zero.</value>
     </labels>
     <labels>
+        <fullName>Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
         <fullName>LWC_Discount_AddDiscount</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -232,6 +253,13 @@
         <value>Close</value>
     </labels>
     <labels>
+        <fullName>LWC_Discount_CreatedSuccessfully</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_CreatedSuccessfully</shortDescription>
+        <value>Discount created successfully</value>
+    </labels>
+    <labels>
         <fullName>LWC_Discount_Edit</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -244,6 +272,34 @@
         <protected>true</protected>
         <shortDescription>LWC_Discount_EditSettings</shortDescription>
         <value>Edit global discount settings</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_EditedSuccessfully</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_EditedSuccessfully</shortDescription>
+        <value>Record has been updated successfully</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_ErrorCreating</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_ErrorCreating</shortDescription>
+        <value>Error creating discount</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_ErrorEditing</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_ErrorEditing</shortDescription>
+        <value>Error during discount edit. Couldn&apos;t update the record.</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Discount_ErrorEditingSettings</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Discount_ErrorEditingSettings</shortDescription>
+        <value>Failed to update global discount setting</value>
     </labels>
     <labels>
         <fullName>LWC_Discount_FetchError</fullName>
@@ -419,6 +475,13 @@
         <protected>true</protected>
         <shortDescription>Step2_OrderValue</shortDescription>
         <value>ORDER VALUE</value>
+    </labels>
+    <labels>
+        <fullName>Success</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
     </labels>
     <labels>
         <fullName>Table_ProductName</fullName>

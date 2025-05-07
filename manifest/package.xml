@@ -96,6 +96,7 @@
         <members>Momentum_Events_UtilityBar</members>
         <members>Lead_Record_Page</members>
         <members>Lead_Record_Page1</members>
+        <members>Opportunity_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>

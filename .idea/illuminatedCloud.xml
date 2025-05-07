@@ -7,7 +7,6 @@
           <option name="connectionName" value="patryk.witkowski736@agentforce.com" />
           <option name="connectionType" value="OAUTH" />
           <option name="defaultModuleName" value="MomentumAppDev" />
-          <option name="offlineSymbolTablePath" value="$PROJECT_DIR$/IlluminatedCloud/patryk_witkowski736_agentforce_com/OfflineSymbolTable.zip" />
         </IlluminatedCloudConnection>
       </list>
     </option>
