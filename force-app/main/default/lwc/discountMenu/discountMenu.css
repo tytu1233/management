@@ -1,0 +1,11 @@
+/**
+ * Created by patryk.witkowski_bri on 4/29/2025.
+ */
+
+.menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    gap: 5px;
+    padding: 5px 5px;
+}

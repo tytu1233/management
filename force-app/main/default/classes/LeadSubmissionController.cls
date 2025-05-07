@@ -6,6 +6,7 @@ global without sharing class LeadSubmissionController {
 
     @RemoteAction
     global static String createAndVerifyLead(String firstName, String lastName, String company, String email) {
+        String elo;
 
         try {
             if (String.isBlank(email)) {

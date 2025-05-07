@@ -1,0 +1,7 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/18/2025.
+ -->
+
+<aura:event type="COMPONENT" description="Handle step changes in form">
+    <aura:attribute name="step" type="String" description="Current step in form"/>
+</aura:event>

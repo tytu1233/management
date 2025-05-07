@@ -1,0 +1,11 @@
+/**
+ * Created by patryk.witkowski_bri on 4/24/2025.
+ */
+
+.container-list {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
