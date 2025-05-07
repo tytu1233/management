@@ -19,7 +19,7 @@ private class OrderServiceTest {
                     Event_Address__City__s = 'Test City',
                     Event_Address__CountryCode__s = 'US',
                     Event_Address__StateCode__s = 'CA',
-                    Event_Address__PostalCode__s = '12345'
+                    Event_Address__PostalCode__s = '123456'
             );
             insert opp;
 
