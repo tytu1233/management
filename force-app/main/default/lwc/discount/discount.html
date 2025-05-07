@@ -1,0 +1,14 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/23/2025.
+ -->
+
+<!-- Discount -->
+<template>
+    <div class="container">
+        <c-discount-menu onopendiscountadd={handleCreate} onopenglobalstate={handleState}></c-discount-menu>
+        <c-discount-list onedit={handleEdit}></c-discount-list>
+        <c-discount-edit discount-id={discountId} onreload={handleReload}></c-discount-edit>
+        <c-discount-create onreload={handleReload}></c-discount-create>
+        <c-discount-global-state ></c-discount-global-state>
+    </div>
+</template>
