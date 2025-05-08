@@ -2,10 +2,10 @@
  * Created by patryk.witkowski_bri on 5/7/2025.
  */
 
-@isTest
+@IsTest
 private class OpportunityProductsServiceTest {
 
-    @isTest
+    @IsTest
     static void testGetProductsWithFilters() {
         List<Product2> products = new List<Product2>();
         products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
@@ -33,7 +33,7 @@ private class OpportunityProductsServiceTest {
         Assert.areEqual(1, result.totalPages, 'Total pages should be 1');
     }
 
-    @isTest
+    @IsTest
     static void testGetCategoriesSuccess() {
         List<Product2> products = new List<Product2>();
         products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));

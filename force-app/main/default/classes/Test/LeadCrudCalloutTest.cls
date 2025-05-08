@@ -209,7 +209,6 @@ private class LeadCrudCalloutTest {
         Test.startTest();
         LeadCrudOperations.createLead();
         Test.stopTest();
-
         System.assertEquals(500, RestContext.response.statusCode, 'Status code should be 500');
         List<LeadCrudOperations.ErrorResponse> errorResponse = (List<LeadCrudOperations.ErrorResponse>) JSON.deserialize(RestContext.response.responseBody.toString(), List<LeadCrudOperations.ErrorResponse>.class);
         System.assertEquals('Invalid field woda for Lead', errorResponse.get(0).message, 'Lead has no that field');
@@ -306,7 +305,7 @@ private class LeadCrudCalloutTest {
 
         Test.startTest();
         LeadCrudOperations.updateLead();
-        Test.stopTest();
+
 
         System.assertEquals(404, RestContext.response.statusCode, 'Status code should be 404');
         List<LeadCrudOperations.ErrorResponse> errorResponse = (List<LeadCrudOperations.ErrorResponse>) JSON.deserialize(RestContext.response.responseBody.toString(), List<LeadCrudOperations.ErrorResponse>.class);
