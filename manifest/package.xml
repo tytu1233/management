@@ -159,6 +159,12 @@
         <members>Trigger_Action.TA_Order_CheckDateAndAddress</members>
         <members>Trigger_Action.TA_Order_FillDateAndAddress</members>
         <members>sObject_Trigger_Setting.Order</members>
+        <members>Trigger_Action.TA_Product_AfterDelete</members>
+        <members>Trigger_Action.TA_Product_BeforeCreate</members>
+        <members>Trigger_Action.TA_Product_Create</members>
+        <members>Trigger_Action.TA_Product_Delete</members>
+        <members>Trigger_Action.TA_Product_Update</members>
+        <members>sObject_Trigger_Setting.Product</members>
         <name>CustomMetadata</name>
     </types>
     <types>
