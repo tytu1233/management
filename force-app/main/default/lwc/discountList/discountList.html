@@ -1,0 +1,20 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/24/2025.
+ -->
+
+<!-- Discount List -->
+<template>
+    <div class="container-list">
+        <template lwc:if={discountsData}>
+            <lightning-datatable
+                    key-field="Id"
+                    data={discountsData}
+                    hide-checkbox-column="true"
+                    columns={columns}
+                    onrowaction={handleRowAction}></lightning-datatable>
+        </template>
+        <template lwc:if={discountError}>
+            <p>{label.LWC_Discount_FetchError}</p>
+        </template>
+    </div>
+</template>

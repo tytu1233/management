@@ -1,0 +1,51 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/30/2025.
+ -->
+
+<!-- Discount Edit -->
+<template>
+    <template lwc:if={isOpen}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <template lwc:if={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+            </template>
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{label.LWC_Discount_EditDiscount}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <lightning-record-edit-form
+                            onerror={handleError}
+                            onsuccess={handleSuccess}
+                            onload={handleLoading}
+                            record-id={discountId}
+                            object-api-name="Discount__c"
+                    >
+                        <lightning-input-field read-only="true" field-name="Name"></lightning-input-field>
+                        <lightning-input-field disabled="true" field-name="Discount_Type__c"></lightning-input-field>
+                        <lightning-input-field read-only="true" field-name="Discount_Percentage__c"></lightning-input-field>
+                        <lightning-input-field read-only="true" field-name="Discount_Amount__c"></lightning-input-field>
+                        <lightning-input-field read-only="true" field-name="Start_Date__c"></lightning-input-field>
+                        <lightning-input-field read-only="true" field-name="End_Date__c"></lightning-input-field>
+                        <lightning-input-field field-name="Active__c"></lightning-input-field>
+
+
+                        <footer class="modal-footer">
+                            <lightning-button
+                                    label={label.LWC_Discount_Close}
+                                    onclick={handleClose}
+                            ></lightning-button>
+                            <lightning-button
+                                    variant="brand"
+                                    type="submit"
+                                    name="update"
+                                    label={label.LWC_Discount_Update}
+                            ></lightning-button>
+                        </footer>
+                    </lightning-record-edit-form>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

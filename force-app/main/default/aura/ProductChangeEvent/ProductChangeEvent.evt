@@ -1,0 +1,7 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/22/2025.
+ -->
+
+<aura:event type="COMPONENT" description="ProductChangeEvent">
+    <aura:attribute name="products" type="Object[]" description="Handle data change"/>
+</aura:event>

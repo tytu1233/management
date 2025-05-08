@@ -1,0 +1,38 @@
+<!--
+ - Created by patryk.witkowski_bri on 4/17/2025.
+ -->
+
+ <aura:component implements="flexipage:availableForAllPageTypes,force:lightningQuickActionWithoutHeader,force:hasRecordId" controller="OrderController" access="global">
+    <!-- Attributes -->
+    <aura:attribute name="currentStep" type="String" default="step1" />
+    <aura:attribute name="stepComponent" type="Aura.Component" />
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="data" type="Object[]"/>
+
+    <!-- Events -->
+    <aura:registerEvent name="updateData" type="c:ProductChangeEvent" />
+    <aura:registerEvent name="stepChange" type="c:StepChangeEvent" />
+
+    <!-- Handlers -->
+    <aura:handler name="updateData" event="c:ProductChangeEvent" action="{!c.handleUpdateData}" />
+    <aura:handler name="stepChange" event="c:StepChangeEvent" action="{!c.handleStepChange}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+     <!-- WIDTH OF MODAL WINDOW -->
+    <aura:html tag="style"> .slds-modal__container { min-width: 60vw; } </aura:html>
+    <div>
+        <div class="slds-m-top_medium" style="min-height: 590px;">
+            {!v.stepComponent}
+        </div>
+        <div class="slds-m-top_medium slds-text-align_right">
+            <lightning:button label="{!$Label.c.Previous}"
+                              class="slds-button slds-button_neutral"
+                              onclick="{!c.handlePrevious}"
+                              disabled="{!v.currentStep == 'step1'}" />
+            <lightning:button label="{!$Label.c.Next}"
+                              class="slds-button slds-button_neutral"
+                              onclick="{!c.handleNext}"
+                              disabled="{!v.currentStep == 'step2' || v.data.length == 0}" />
+        </div>
+    </div>
+</aura:component>
