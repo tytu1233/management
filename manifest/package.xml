@@ -237,6 +237,15 @@
         <members>Step2_OrderSummary</members>
         <members>Step2_OrderValue</members>
         <members>Table_ProductName</members>
+        <members>Discount_ClassNotExist</members>
+        <members>Discount_LWC_MetadataUpdated</members>
+        <members>Error</members>
+        <members>LWC_Discount_CreatedSuccessfully</members>
+        <members>LWC_Discount_EditedSuccessfully</members>
+        <members>LWC_Discount_ErrorCreating</members>
+        <members>LWC_Discount_ErrorEditing</members>
+        <members>LWC_Discount_ErrorEditingSettings</members>
+        <members>Success</members>
         <name>CustomLabel</name>
     </types>
     <version>63.0</version>
