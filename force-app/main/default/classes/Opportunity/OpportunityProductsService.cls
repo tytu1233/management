@@ -7,8 +7,8 @@ public class OpportunityProductsService {
         try {
             ProductData productData = new ProductData();
 
-            String query = 'SELECT Id, Name, Base_Price__c, Family FROM Product2 WHERE Family != NULL AND IsActive = TRUE';
-            String countQuery = 'SELECT COUNT() FROM Product2 WHERE Family != NULL AND IsActive = TRUE';
+            String query = 'SELECT Id, Name, Base_Price__c, Family FROM Product2 WHERE (Family != NULL OR IsExternal__c = TRUE) AND IsActive = TRUE';
+            String countQuery = 'SELECT COUNT() FROM Product2 WHERE (Family != NULL OR IsExternal__c = TRUE) AND IsActive = TRUE';
             String productNameFilter = '%' + String.escapeSingleQuotes(searchQuery) + '%';
 
             if (!categoriesFilter.isEmpty()) {
