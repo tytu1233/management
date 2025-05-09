@@ -3,25 +3,6 @@
  */
 
 public with sharing class IntegrationCallout {
-
-    @Future(Callout=true)
-    public static void checkConnection(String body) {
-        System.debug(body);
-        String targetEndpoint = 'callout:SalesforceIntegrationCredential/services/apexrest/integration/product';
-
-        Http http = new Http();
-
-        HttpRequest request = new HttpRequest();
-        request.setMethod('GET');
-        request.setEndpoint(targetEndpoint);
-        request.setHeader('Authorization', 'Bearer ' + UserInfo.getSessionId());
-        request.setHeader('Content-Type', 'application/json');
-
-        HttpResponse response = http.send(request);
-        System.debug(response.getStatusCode());
-        System.debug(response.getBody());
-    }
-
     @Future(Callout=true)
     public static void sendProducts(List<Id> productIds) {
         List<Product2> products = [
@@ -31,9 +12,7 @@ public with sharing class IntegrationCallout {
         ];
 
         Http http = new Http();
-
         HttpRequest request = configureRequest('POST', products);
-
         HttpResponse response = http.send(request);
 
         if(response.getStatusCode() == 200) {
@@ -45,27 +24,26 @@ public with sharing class IntegrationCallout {
     @Future(Callout=true)
     public static void deleteProducts(Set<Id> productIds) {
         List<Product2> products = [
-                SELECT Name, Base_Price__c, IsActive
+                SELECT Id, Name, Base_Price__c, IsActive, ExternalId__c
                 FROM Product2
                 WHERE Id IN :productIds
                 ALL ROWS
         ];
 
-        for(Product2 product : products) {
-            product.IsActive = false;
-        }
-
         Http http = new Http();
         HttpRequest request = configureRequest('DELETE', products);
         HttpResponse response = http.send(request);
-        System.debug(response.getStatusCode());
-        System.debug(response.getBody());
-        if(response.getStatusCode() != 200) {
+
+        if (response.getStatusCode() != 200) {
             throw new AuraHandledException('Synchronization with other org was not possible. Please try again');
         }
 
-        undelete products;
-        update products;
+        try {
+            undelete products;
+        } catch (Exception ex) {
+            System.debug('Undelete failed: ' + ex.getMessage());
+            throw new AuraHandledException('Failed to restore products: ' + ex.getMessage());
+        }
     }
 
     @Future(Callout=true)
@@ -79,8 +57,7 @@ public with sharing class IntegrationCallout {
         Http http = new Http();
         HttpRequest request = configureRequest('PUT', products);
         HttpResponse response = http.send(request);
-        System.debug(response.getStatusCode());
-        System.debug(response.getBody());
+
         if(response.getStatusCode() != 200) {
             throw new AuraHandledException('Synchronization with other org was not possible. Please try again');
         }
@@ -97,13 +74,5 @@ public with sharing class IntegrationCallout {
         request.setBody(JSON.serialize(data));
 
         return request;
-    }
-
-    public class ProductUpdateDTO {
-        @AuraEnabled public String Name;
-        @AuraEnabled public String OldName;
-        @AuraEnabled public String BasePrice;
-        @AuraEnabled public Boolean Active;
-        @AuraEnabled public Boolean ProductCode;
     }
 }

@@ -7,13 +7,30 @@ public class TA_Product_Update implements TriggerAction.AfterUpdate {
         Set<Id> productIds = new Set<Id>();
 
         for(Product2 product : triggerOld) {
-            productIds.add(product.Id);
+            if(!product.IsExternal__c) {
+                productIds.add(product.Id);
+            }
         }
 
         try {
-            IntegrationCallout.updateProducts(productIds);
+            if(!productIds.isEmpty()) {
+                IntegrationCallout.updateProducts(productIds);
+            }
         } catch (Exception ex) {
             throw new AuraHandledException('Cant update the record');
         }
+
+
+        List<PricebookEntry> pricebookEntries = [
+                SELECT UnitPrice, Product2.Base_Price__c
+                FROM PricebookEntry
+                WHERE Product2Id IN : triggerOld
+        ];
+
+        for(PricebookEntry pricebookEntry : pricebookEntries) {
+            pricebookEntry.UnitPrice = pricebookEntry.Product2.Base_Price__c;
+        }
+
+        update pricebookEntries;
     }
 }
