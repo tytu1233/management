@@ -7,4 +7,5 @@ public class Utils {
     public static OrderConstants ORDER { get { return new OrderConstants(); } }
     public static DiscountConstants DISCOUNT { get { return new DiscountConstants(); } }
     public static OpportunityConstants OPPORTUNITY { get { return new OpportunityConstants(); } }
+    public static LogConstants LOG { get { return new LogConstants(); } }
 }
