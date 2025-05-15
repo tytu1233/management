@@ -4,5 +4,6 @@
     <hasActivationRequired>false</hasActivationRequired>
     <label>EventManager</label>
     <permissionSets>Event_Manager</permissionSets>
+    <permissionSets>Integration_Callout</permissionSets>
     <status>Updated</status>
 </PermissionSetGroup>

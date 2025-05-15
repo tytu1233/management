@@ -44,6 +44,7 @@
         <members>Pricebook2</members>
         <members>Discount__c</members>
         <members>Order_Discount__c</members>
+        <members>Product_Logger__c</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -141,6 +142,7 @@
     <types>
         <members>Event_Manager</members>
         <members>Event_Users</members>
+        <members>Integration_Callout</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -253,6 +255,23 @@
         <members>LWC_Discount_ErrorEditingSettings</members>
         <members>Success</members>
         <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>OrgIntegrationAuthProvider</members>
+        <name>AuthProvider</name>
+    </types>
+    <types>
+        <members>IntegrationOrg</members>
+        <name>ConnectedApp</name>
+    </types>
+    <types>
+        <members>SalesforceIntegrationCredentialExternal</members>
+        <name>ExternalCredential</name>
+    </types>
+    <types>
+        <members>SalesforceIntegrationCredential</members>
+        <members>SalesforceIntegrationCredentialv2</members>
+        <name>NamedCredential</name>
     </types>
     <version>63.0</version>
 </Package>
