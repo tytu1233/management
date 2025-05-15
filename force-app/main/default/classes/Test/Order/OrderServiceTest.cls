@@ -25,7 +25,8 @@ private class OrderServiceTest {
 
             Product2 prod = new Product2(
                     Name = 'Test Product',
-                    IsActive = true
+                    IsActive = true,
+                    IsExternal__c = true
             );
             insert prod;
 

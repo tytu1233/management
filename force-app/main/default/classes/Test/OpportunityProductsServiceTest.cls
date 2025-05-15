@@ -8,11 +8,11 @@ private class OpportunityProductsServiceTest {
     @IsTest
     static void testGetProductsWithFilters() {
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
-        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true));
-        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false));
-        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false, IsExternal__c = true));
+        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true, IsExternal__c = true));
         insert products;
 
         List<String> categories = new List<String>{'Category1'};
@@ -36,11 +36,11 @@ private class OpportunityProductsServiceTest {
     @IsTest
     static void testGetCategoriesSuccess() {
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
-        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true));
-        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false));
-        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false, IsExternal__c = true));
+        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true, IsExternal__c = true));
         insert products;
 
         Test.startTest();
@@ -55,7 +55,7 @@ private class OpportunityProductsServiceTest {
 
         Set<String> expectedCategories = new Set<String>{'Category1', 'Category2'};
         for (OpportunityProductsService.CategoryDTO category : result.productsCategories) {
-            System.assert(expectedCategories.contains(category.label), 'Category label should be Category1 or Category2');
+            Assert.isTrue(expectedCategories.contains(category.label), 'Category label should be Category1 or Category2');
             Assert.areEqual(category.label, category.value, 'Label and value should match');
         }
     }
@@ -76,8 +76,8 @@ private class OpportunityProductsServiceTest {
         insert opportunity;
 
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
         insert products;
 
         List<PricebookEntry> pricebookEntries = new List<PricebookEntry>();
