@@ -68,6 +68,18 @@
                 <identifier>RecordBase_Price_cField</identifier>
             </fieldInstance>
         </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.IsExternal__c</fieldItem>
+                <identifier>RecordIsExternal__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
+        <itemInstances>
+            <fieldInstance>
+                <fieldItem>Record.ExternalId__c</fieldItem>
+                <identifier>RecordExternalId__cField</identifier>
+            </fieldInstance>
+        </itemInstances>
         <name>Facet-197c46be-748c-4b95-bb45-d008aedd9295</name>
         <type>Facet</type>
     </flexiPageRegions>
