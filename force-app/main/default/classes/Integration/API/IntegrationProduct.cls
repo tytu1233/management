@@ -11,15 +11,15 @@ global with sharing class IntegrationProduct {
 
         Integer code = 200;
         String recordId = null;
-        List<Product2> requestProducts = new List<Product2>();
+        List<Product2> productsToPricebook = new List<Product2>();
         List<Logger.ResponseDTO> responseLogs = new List<Logger.ResponseDTO>();
         List<Logger.ProductLog> productLogs = new List<Logger.ProductLog>();
 
         try {
             String requestBodyString = request.requestBody.toString();
             List<Object> requestJsonList = (List<Object>) JSON.deserializeUntyped(requestBodyString);
-            requestProducts = (List<Product2>) JSON.deserialize(requestBodyString, List<Product2>.class);
-            System.debug(request.requestBody.toString());
+            List<Product2> requestProducts = (List<Product2>) JSON.deserialize(requestBodyString, List<Product2>.class);
+
             for(Product2 product : requestProducts) {
                 product.ExternalId__c = product.Id;
                 product.Id = null;
@@ -31,7 +31,7 @@ global with sharing class IntegrationProduct {
 
             for(Database.SaveResult result : srList) {
                 recordId = requestProducts[index].ExternalId__c;
-                Logger.ResponseDTO responseDTO = Logger.responseBodyReturn(result.getId(), result.isSuccess());
+                Logger.ResponseDTO responseDTO = Logger.responseBodyReturn(result.getId(), result.isSuccess(), 'Product has been created successfully');
                 Logger.ProductLog productLog = createLog(requestJsonList.get(index).toString(), result.getId(), new List<Logger.ResponseDTO>{responseDTO});
 
                 productLogs.add(productLog);
@@ -39,10 +39,11 @@ global with sharing class IntegrationProduct {
                 index++;
             }
 
-            IntegrationPricebook.integrationProductsAddToPricebook(requestProducts);
+            //TODO: ZMIENIC JAK BEDZIE BLAD ZEBY SIE NIE WYWOLYWALO
+            //IntegrationPricebook.integrationProductsAddToPricebook(requestProducts);
         } catch(Exception ex) {
             code = 400;
-            Logger.ResponseDTO responseError = Logger.responseBodyReturn(recordId, false);
+            Logger.ResponseDTO responseError = Logger.responseBodyReturn(recordId, false, ex.getMessage());
             responseLogs = new List<Logger.ResponseDTO>{responseError};
         } finally {
             response.statusCode = code;
@@ -72,13 +73,13 @@ global with sharing class IntegrationProduct {
             Database.UpsertResult[] srList = Database.upsert(requestProducts, Product2.ExternalId__c, false);
             Integer index = 0;
             for(Database.UpsertResult result : srList) {
-                Logger.ResponseDTO responseDTO = Logger.responseBodyReturn(recordId, result.isSuccess());
+                Logger.ResponseDTO responseDTO = Logger.responseBodyReturn(recordId, result.isSuccess(), 'Product has been updated successfully');
                 responseLogs.add(responseDTO);
                 index++;
             }
         } catch(Exception ex) {
             code = 400;
-            Logger.ResponseDTO responseError = Logger.responseBodyReturn(recordId, false);
+            Logger.ResponseDTO responseError = Logger.responseBodyReturn(recordId, false, ex.getMessage());
             responseLogs = new List<Logger.ResponseDTO>{responseError};
         }
         response.statusCode = code;

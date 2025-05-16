@@ -9,6 +9,7 @@ public class LogConstants {
     public class StatusLog {
         public String SUCCESS { get { return 'Success'; } }
         public String FAILED { get { return 'Failed'; } }
+        public String NETWORK_PROBLEM { get { return 'Network problem'; } }
         public String PENDING { get { return 'Pending'; } }
     }
 

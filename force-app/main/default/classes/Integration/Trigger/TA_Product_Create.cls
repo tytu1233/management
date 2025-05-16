@@ -11,13 +11,8 @@ public class TA_Product_Create implements TriggerAction.AfterInsert {
             }
         }
 
-        try {
-            if (!products.isEmpty()) {
-                System.enqueueJob(new ProductExternalQueueable(products, 'POST'));
-            }
-        } catch (Exception ex) {
-            System.debug('Callout exception: ' + ex.getMessage());
-            throw new AuraHandledException('Callout failed: ' + ex.getMessage());
+        if (!products.isEmpty()) {
+            System.enqueueJob(new ProductExternalQueueable(products, 'POST'));
         }
     }
 }

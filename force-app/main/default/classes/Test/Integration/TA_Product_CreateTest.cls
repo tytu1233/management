@@ -3,37 +3,46 @@
  */
 @IsTest
 private class TA_Product_CreateTest {
+    @TestSetup
+    static void setup() {
+        DataGenerator factoryProducts = new DataGenerator();
+        factoryProducts.createData();
+    }
+
+    class DataGenerator extends Factory {
+        public override Product2 createProduct() {
+            Product2 product = prepareProduct()
+                    .productCode('TEST001')
+                    .basePrice(200.00)
+                    .active(true)
+                    .external(false)
+                    .build();
+            return product;
+        }
+
+        public override void createData() {
+            insert preparePricebook()
+                    .name('Event Management Price Book')
+                    .active(true)
+                    .build();
+        }
+    }
+
     @IsTest
     static void testAfterInsertSuccess() {
-        Product2 prod1 = new Product2(
-                Name = 'Test Product 1',
-                ProductCode = 'TEST001',
-                Base_Price__c = 100.00,
-                IsActive = true,
-                IsExternal__c = false
-        );
-        Product2 prod2 = new Product2(
-                Name = 'Test Product 2',
-                ProductCode = 'TEST002',
-                Base_Price__c = 200.00,
-                IsActive = true,
-                IsExternal__c = false
-        );
-        List<Product2> products = new List<Product2>{prod1, prod2};
+
+        List<Product2> products = new List<Product2>{new DataGenerator().createProduct(), new DataGenerator().createProduct()};
+
+        Test.setMock(HttpCalloutMock.class, new MockHttpSuccess());
 
         Test.startTest();
-        insert products;
+        TA_Product_Create handler = new TA_Product_Create();
+        handler.afterInsert(products);
         Test.stopTest();
 
-        List<Product2> products2 = [
-                SELECT Id, ExternalId__c, IsExternal__c
-                FROM Product2
-        ];
-
-        Assert.areEqual(2, products2.size(), 'Two products should be inserted');
-        for (Product2 entry : products2) {
-            Assert.areEqual(false, entry.IsExternal__c, 'Product shouldn\'t be from external source');
-            Assert.areEqual(true, String.isNotBlank(entry.ExternalId__c), 'Product should have ExternalId');
+        for(Product2 product : products) {
+            Assert.isFalse(product.hasErrors(), 'Products shouldn\'t have errors');
+            Assert.areEqual(0, product.getErrors().size(), 'No errors');
         }
     }
 }

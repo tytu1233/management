@@ -37,20 +37,19 @@ public with sharing class Logger {
             productLogger.Method__c = method;
             productLogger.Name = product.recordId + ' ' + Datetime.now();
             productLoggers.add(productLogger);
-            System.debug(productLogger);
         }
         insert productLoggers;
     }
 
-    public static ResponseDTO responseBodyReturn(String recordId, Boolean isSuccess) {
+    public static ResponseDTO responseBodyReturn(String recordId, Boolean isSuccess, String message) {
         ResponseDTO responseDTO = new ResponseDTO();
         responseDTO.recordId = recordId;
         if(isSuccess) {
             responseDTO.status = Utils.LOG.STATUS.SUCCESS;
-            responseDTO.message = 'Record has been created successfully';
+            responseDTO.message = message;
         } else {
             responseDTO.status = Utils.LOG.STATUS.FAILED;
-            responseDTO.message = 'Mission failed successfully';
+            responseDTO.message = message;
         }
         return responseDTO;
     }
