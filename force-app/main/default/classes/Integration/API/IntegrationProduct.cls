@@ -11,7 +11,6 @@ global with sharing class IntegrationProduct {
 
         Integer code = 200;
         String recordId = null;
-        List<Product2> productsToPricebook = new List<Product2>();
         List<Logger.ResponseDTO> responseLogs = new List<Logger.ResponseDTO>();
         List<Logger.ProductLog> productLogs = new List<Logger.ProductLog>();
 
@@ -38,9 +37,6 @@ global with sharing class IntegrationProduct {
                 responseLogs.add(responseDTO);
                 index++;
             }
-
-            //TODO: ZMIENIC JAK BEDZIE BLAD ZEBY SIE NIE WYWOLYWALO
-            //IntegrationPricebook.integrationProductsAddToPricebook(requestProducts);
         } catch(Exception ex) {
             code = 400;
             Logger.ResponseDTO responseError = Logger.responseBodyReturn(recordId, false, ex.getMessage());
