@@ -14,13 +14,21 @@ public with sharing class Logger {
             productLogger.Request_Body__c = product.requestBody;
             productLogger.Response_Body__c = JSON.serialize(product.responseBody);
             productLogger.Status__c = (String) product.responseBody.get(0).status;
-            productLogger.Type__c = 'Callout';
-            productLogger.Retry__c = product.responseBody.get(0).status == 'Failed' ? 1 : null;
+            productLogger.Type__c = Utils.LOG.TYPE.CALLOUT;
+            if(product.responseBody.get(0) != null)
+            productLogger.Retry__c = checkStatusErrorOrNetworkProblem(product.responseBody.get(0).status) ?
+                    1 :
+                    null;
             productLogger.Method__c = method;
             productLogger.Name = product.recordId + ' ' + Datetime.now();
             productLoggers.add(productLogger);
         }
         insert productLoggers;
+    }
+
+    private static Boolean checkStatusErrorOrNetworkProblem(String status) {
+        return status.equalsIgnoreCase(Utils.LOG.STATUS.FAILED) ||
+               status.equalsIgnoreCase(Utils.LOG.STATUS.NETWORK_PROBLEM);
     }
 
     public static void logProductRest(List<ProductLog> productLogs, String method) {
@@ -33,7 +41,7 @@ public with sharing class Logger {
             productLogger.Request_Body__c = product.requestBody;
             productLogger.Response_Body__c = JSON.serialize(product.responseBody);
             productLogger.Status__c = (String) product.responseBody.get(0).status;
-            productLogger.Type__c = 'REST';
+            productLogger.Type__c = Utils.LOG.TYPE.REST;
             productLogger.Method__c = method;
             productLogger.Name = product.recordId + ' ' + Datetime.now();
             productLoggers.add(productLogger);

@@ -20,6 +20,11 @@ public class PricebookBuilder {
         return this;
     }
 
+    public PricebookBuilder save() {
+        insert this.pricebook2;
+        return this;
+    }
+
     public Pricebook2 build() {
         return this.pricebook2;
     }

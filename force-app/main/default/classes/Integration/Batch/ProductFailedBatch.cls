@@ -4,7 +4,7 @@
 
 public with sharing class ProductFailedBatch implements Database.Batchable<SObject>, Database.AllowsCallouts, Database.Stateful {
 
-    final List<Id> productsIdToSend = new List<Id>();
+    public final List<Id> productsIdToSend = new List<Id>();
 
     public Database.QueryLocator start(Database.BatchableContext context) {
         return Database.getQueryLocator([
@@ -58,7 +58,8 @@ public with sharing class ProductFailedBatch implements Database.Batchable<SObje
                 HttpRequest request = HttpConfiguration.configureRequest(productLogger.Method__c, new List<Product2>{productMap.get(productLogger.Product__c)});
                 HttpResponse response = http.send(request);
 
-                List<Logger.ProductLog> productLogs = (List<Logger.ProductLog>) JSON.deserialize(response.getBody(), List<Logger.ProductLog>.class);
+                List<Logger.ResponseDTO> productLogs = (List<Logger.ResponseDTO>) JSON.deserialize(response.getBody(), List<Logger.ResponseDTO>.class);
+
                 if(productLogs.get(0).status == 'Failed') {
                     productLogger.Retry__c += 1;
                 } else {

@@ -24,6 +24,9 @@ public with sharing class ProductExternalQueueable implements Queueable, Databas
             Logger.ProductLog productLog = new Logger.ProductLog();
             try {
                 HttpResponse response = http.send(request);
+                if(response.getStatusCode() != 200) {
+                    throw new HandledException('ERRRORRRR');
+                }
                 List<Logger.ResponseDTO> responseBodyLog = (List<Logger.ResponseDTO>) JSON.deserialize(response.getBody(), List<Logger.ResponseDTO>.class);
                 productLog = createLog(request.getBody(), products.get(i).Id, responseBodyLog);
 

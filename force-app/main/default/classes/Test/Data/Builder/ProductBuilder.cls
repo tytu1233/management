@@ -42,6 +42,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder save() {
+        insert this.product;
+        return this;
+    }
+
     public Product2 build() {
         return this.product;
     }

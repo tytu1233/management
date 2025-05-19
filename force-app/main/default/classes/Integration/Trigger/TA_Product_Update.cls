@@ -12,12 +12,8 @@ public class TA_Product_Update implements TriggerAction.AfterUpdate {
             }
         }
 
-        try {
-            if(!products.isEmpty()) {
-                System.enqueueJob(new ProductExternalQueueable(products, 'PUT'));
-            }
-        } catch (Exception ex) {
-            throw new AuraHandledException('Cant update the record');
+        if(!products.isEmpty()) {
+            System.enqueueJob(new ProductExternalQueueable(products, 'PUT'));
         }
     }
 }

@@ -11,7 +11,6 @@ public with sharing class IntegrationPricebook {
         List<PricebookEntry> pricebookStandardEntries = new List<PricebookEntry>();
         List<PricebookEntry> pricebookEntries = new List<PricebookEntry>();
 
-        try {
             for (Product2 product : products) {
                 PricebookEntry pricebookEntry = new PricebookEntry(
                         IsActive = product.IsActive,
@@ -22,11 +21,7 @@ public with sharing class IntegrationPricebook {
                 pricebookStandardEntries.add(pricebookEntry);
             }
             insert pricebookStandardEntries;
-        } catch (Exception ex) {
-            throw new AuraHandledException('Failed to insert standard pricebook entries: ' + ex.getMessage());
-        }
 
-        try {
             for (Product2 product : products) {
                 PricebookEntry pricebookEntry = new PricebookEntry(
                         IsActive = product.IsActive,
@@ -37,26 +32,24 @@ public with sharing class IntegrationPricebook {
                 pricebookEntries.add(pricebookEntry);
             }
             insert pricebookEntries;
-        } catch (Exception ex) {
-            throw new AuraHandledException('Failed to insert custom pricebook entries: ' + ex.getMessage());
-        }
     }
 
     public static void integrationProductsUpdatePricebook(List<Product2> products) {
+        Map<Id, Decimal> productIdToBasePrice = new Map<Id, Decimal>();
+        for (Product2 product : products) {
+            productIdToBasePrice.put(product.Id, product.Base_Price__c);
+        }
+
         List<PricebookEntry> pricebookEntries = [
-                SELECT UnitPrice, Product2.Base_Price__c
+                SELECT Id, UnitPrice, Product2Id
                 FROM PricebookEntry
-                WHERE Product2Id IN :products
+                WHERE Product2Id IN :productIdToBasePrice.keySet()
         ];
 
         for (PricebookEntry pricebookEntry : pricebookEntries) {
-            pricebookEntry.UnitPrice = pricebookEntry.Product2.Base_Price__c;
+            pricebookEntry.UnitPrice = productIdToBasePrice.get(pricebookEntry.Product2Id);
         }
 
-        try {
-            update pricebookEntries;
-        } catch (Exception ex) {
-            throw new AuraHandledException('Failed to restore products: ' + ex.getMessage());
-        }
+        update pricebookEntries;
     }
 }

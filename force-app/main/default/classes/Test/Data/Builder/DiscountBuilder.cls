@@ -47,12 +47,12 @@ public class DiscountBuilder {
         return this;
     }
 
-    public Discount__c build() {
-        return this.discount;
+    public DiscountBuilder save() {
+        insert this.discount;
+        return this;
     }
 
-    public DiscountBuilder save() {
-        insert discount;
-        return this;
+    public Discount__c build() {
+        return this.discount;
     }
 }

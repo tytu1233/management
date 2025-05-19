@@ -56,6 +56,11 @@ public class OpportunityBuilder {
         return this;
     }
 
+    public OpportunityBuilder save() {
+        insert this.opportunity;
+        return this;
+    }
+
     public Opportunity build() {
         return this.opportunity;
     }

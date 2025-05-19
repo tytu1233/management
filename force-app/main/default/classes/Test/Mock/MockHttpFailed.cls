@@ -7,7 +7,7 @@ public class MockHttpFailed implements HttpCalloutMock {
         HttpResponse response = new HttpResponse();
         response.setHeader('Content-Type', 'application/json');
         response.setStatusCode(400);
-        response.setBody('{"message": "Mission failed successfully"}');
+        response.setBody('BLAD');
         return response;
     }
 }

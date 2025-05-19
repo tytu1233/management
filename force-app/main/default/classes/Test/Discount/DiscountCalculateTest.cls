@@ -23,23 +23,7 @@ private class DiscountCalculateTest {
 
     @TestSetup
     static void setup() {
-        Discount__c discount = new Discount__c(
-                Name = 'Test Discount',
-                Discount_Type__c = 'Percentage',
-                Discount_Percentage__c = 20,
-                Active__c = true,
-                Start_Date__c = Date.today().addDays(-10),
-                End_Date__c = Date.today().addDays(10)
-        );
-        insert discount;
-
-        Opportunity opportunity = new Opportunity();
-        opportunity.Name = 'New opportunity';
-        opportunity.Event_Date__c = Datetime.newInstance(2025, 12, 12, 12, 12, 12);
-        opportunity.CloseDate = Date.newInstance(2025, 12, 14);
-        opportunity.StageName = 'Prospecting';
-
-        insert opportunity;
+        new DataGenerator().createData();
     }
 
     @IsTest
@@ -82,5 +66,35 @@ private class DiscountCalculateTest {
 
         Assert.areEqual(discounts.size(), 1, 'Size should be 1');
         Assert.isFalse(discounts.isEmpty());
+    }
+
+    class DataGenerator extends Factory {
+        public override Discount__c createDiscount() {
+            Discount__c discount = prepareDiscount()
+                    .name('Test Discount')
+                    .discountType('Percentage')
+                    .percentage(20)
+                    .active(true)
+                    .startDate(Date.today().addDays(-10))
+                    .endDate(Date.today().addDays(10))
+                    .save()
+                    .build();
+            return discount;
+        }
+        public override Opportunity createOpportunity() {
+            Opportunity opportunity = prepareOpportunity()
+                    .name('New opportunity')
+                    .eventDate(Datetime.newInstance(2025, 12, 12, 12, 12, 12))
+                    .closeDate(Date.newInstance(2025, 12, 14))
+                    .stage('Prospecting')
+                    .save()
+                    .build();
+            return opportunity;
+        }
+
+        public override void createData() {
+            createDiscount();
+            createOpportunity();
+        }
     }
 }
