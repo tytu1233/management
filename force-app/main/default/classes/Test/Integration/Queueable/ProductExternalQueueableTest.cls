@@ -15,26 +15,28 @@ private class ProductExternalQueueableTest {
     static void productExternalQueueable_Success() {
         delete [SELECT Id FROM Product_Logger__c];
         List<Product2> products = [SELECT Id, Name, Base_Price__c, IsExternal__c FROM Product2];
-
-        System.debug([SELECT Id, Name, Status__c, Method__c FROM Product_Logger__c]);
-        Test.setMock(HttpCalloutMock.class, new MockHttpSuccess());
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(200, '[{"status":"Success","recordId":"01tgL0000023o5ZQAQ","message":"Record has been created successfully"}]'));
 
         Test.startTest();
         System.enqueueJob(new ProductExternalQueueable(products, 'POST'));
         Test.stopTest();
+
+        for(Product_Logger__c productLogger : [SELECT Id, Name, Status__c, Method__c, Product__c, Retry__c FROM Product_Logger__c]) {
+            System.debug(productLogger);
+            Assert.areEqual('Success', productLogger.Status__c, 'Status should equal to success');
+            Assert.areEqual(null, productLogger.Retry__c, 'Retry should be not specified');
+        }
     }
 
     @IsTest
     static void productExternalQueueable_Error() {
         delete [SELECT Id FROM Product_Logger__c];
         List<Product2> products = [SELECT Id, Name, Base_Price__c, IsExternal__c FROM Product2];
-        Test.setMock(HttpCalloutMock.class, new MockHttpFailed());
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(400, 'BLAD'));
 
         Test.startTest();
         System.enqueueJob(new ProductExternalQueueable(products, 'PUT'));
         Test.stopTest();
-
-        System.debug([SELECT Retry__c, Id, Name, Status__c, Method__c, Product__c FROM Product_Logger__c]);
 
         for(Product_Logger__c productLogger : [SELECT Id, Name, Status__c, Method__c, Product__c, Retry__c FROM Product_Logger__c]) {
             Assert.areEqual('PUT', productLogger.Method__c, 'Method should match');
