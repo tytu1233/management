@@ -7,7 +7,7 @@ public class OpportunityProductsService {
         try {
             ProductData productData = new ProductData();
 
-            String query = 'SELECT Id, Name, Base_Price__c, Family FROM Product2 WHERE (Family != NULL OR IsExternal__c = TRUE) AND IsActive = TRUE';
+            String query = 'SELECT Id, Name, Base_Price__c, Family, IsExternal__c FROM Product2 WHERE (Family != NULL OR IsExternal__c = TRUE) AND IsActive = TRUE';
             String countQuery = 'SELECT COUNT() FROM Product2 WHERE (Family != NULL OR IsExternal__c = TRUE) AND IsActive = TRUE';
             String productNameFilter = '%' + String.escapeSingleQuotes(searchQuery) + '%';
 
@@ -35,6 +35,7 @@ public class OpportunityProductsService {
                 wrap.price = product.Base_Price__c;
                 wrap.category = product.Family;
                 wrap.productId = product.Id;
+                wrap.isExternal = product.IsExternal__c;
                 productsWrapped.add(wrap);
             }
 
@@ -110,6 +111,7 @@ public class OpportunityProductsService {
         @AuraEnabled public String name;
         @AuraEnabled public String category;
         @AuraEnabled public Decimal price;
+        @AuraEnabled public Boolean isExternal;
     }
 
     public class CategoryDTO {
