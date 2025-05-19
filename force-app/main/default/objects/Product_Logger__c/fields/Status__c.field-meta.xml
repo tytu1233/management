@@ -24,6 +24,11 @@
                 <default>false</default>
                 <label>Pending</label>
             </value>
+            <value>
+                <fullName>Network problem</fullName>
+                <default>false</default>
+                <label>Network problem</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>
