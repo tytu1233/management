@@ -22,9 +22,6 @@ private class ProductExternalQueueableTest {
         Test.startTest();
         System.enqueueJob(new ProductExternalQueueable(products, 'POST'));
         Test.stopTest();
-
-        System.debug('AFTERCALL');
-        System.debug([SELECT Id, Name, Status__c, Method__c, Product__c FROM Product_Logger__c]);
     }
 
     @IsTest
