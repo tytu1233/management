@@ -13,4 +13,16 @@ public class HttpConfiguration {
 
         return request;
     }
+
+    public static HttpRequest configureRequestPlatform(Case_Notification__e caseNotification) {
+        String targetEndpoint = 'callout:SalesforceIntegrationCredentialv2/services/data/v63.0/sobjects/Case_Notification__e';
+        String method = 'POST';
+
+        HttpRequest request = new HttpRequest();
+        request.setMethod(method);
+        request.setEndpoint(targetEndpoint);
+        request.setBody(JSON.serialize(caseNotification));
+
+        return request;
+    }
 }

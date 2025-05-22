@@ -45,6 +45,9 @@
         <members>Discount__c</members>
         <members>Order_Discount__c</members>
         <members>Product_Logger__c</members>
+        <members>Case_Notification__e</members>
+        <members>Case_Product__c</members>
+        <members>Case_Response__e</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -143,6 +146,7 @@
         <members>Event_Manager</members>
         <members>Event_Users</members>
         <members>Integration_Callout</members>
+        <members>IntegrationPlatformEvents</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -180,6 +184,7 @@
     </types>
     <types>
         <members>Opportunity.Create_Order</members>
+        <members>Order.Create_Case</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -253,6 +258,18 @@
         <members>LWC_Discount_ErrorEditing</members>
         <members>LWC_Discount_ErrorEditingSettings</members>
         <members>Success</members>
+        <members>Cancel</members>
+        <members>LWC_Case_Complaint</members>
+        <members>LWC_Case_Created</members>
+        <members>LWC_Case_Description</members>
+        <members>LWC_Case_NoOrderItems</members>
+        <members>LWC_Case_Subject</members>
+        <members>LWC_Case_Table_External</members>
+        <members>LWC_Case_Table_Price</members>
+        <members>LWC_Case_Table_ProductName</members>
+        <members>Save</members>
+        <members>LWC_Case_ChoosePriority</members>
+        <members>LWC_Case_Priority</members>
         <name>CustomLabel</name>
     </types>
     <types>

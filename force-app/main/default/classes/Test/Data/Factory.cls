@@ -2,15 +2,13 @@
  * Created by patryk.witkowski_bri on 5/14/2025.
  */
 
-//TODO: POMYSLEC NAD QUEROWANIEM REKORDKOW, ZE GET DISCOUNTS ITD (TEZ MAJA BYC VIRTUALNE)
 public abstract class Factory {
 
     public abstract void createData();
 
     protected DiscountBuilder prepareDiscount() {
-        return new DiscountBuilder(
-                'Test ' + UUID.randomUUID()
-        );
+        return new DiscountBuilder('Test ' + UUID.randomUUID())
+                .active(true);
     }
 
     protected ProductLoggerBuilder prepareProductLogger() {

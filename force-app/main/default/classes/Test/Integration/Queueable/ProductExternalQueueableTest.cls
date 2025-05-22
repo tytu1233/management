@@ -15,6 +15,7 @@ private class ProductExternalQueueableTest {
     static void productExternalQueueable_Success() {
         delete [SELECT Id FROM Product_Logger__c];
         List<Product2> products = [SELECT Id, Name, Base_Price__c, IsExternal__c FROM Product2];
+        //TODO: NIE SZTYWNE ID, SPRAWDZIC OPROCZ SAMEGO LOGGERA, ZEBY SPRAWDZIC CZY DOBRE DANE ZWROCILO Z MOCKA
         Test.setMock(HttpCalloutMock.class, new MockHttpResponse(200, '[{"status":"Success","recordId":"01tgL0000023o5ZQAQ","message":"Record has been created successfully"}]'));
 
         Test.startTest();
@@ -69,7 +70,6 @@ private class ProductExternalQueueableTest {
         }
 
         public override void createData() {
-            //TODO: ZROBIC SAVEY - TO MA WYWOLYWAC SAME CREATE DATA METODKI
             createPricebook();
             createProduct();
         }

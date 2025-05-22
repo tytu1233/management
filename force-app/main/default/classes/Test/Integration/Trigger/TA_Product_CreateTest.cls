@@ -14,7 +14,7 @@ private class TA_Product_CreateTest {
 
         List<Product2> products = new List<Product2>{new DataGenerator().createProduct(), new DataGenerator().createProduct()};
 
-        Test.setMock(HttpCalloutMock.class, new MockHttpSuccess());
+        Test.setMock(HttpCalloutMock.class, new MockHttpResponse(200, '[{"status":"Success","recordId":"01tgL0000023o5ZQAQ","message":"Record has been created successfully"}]'));
 
         Test.startTest();
         TA_Product_Create handler = new TA_Product_Create();
