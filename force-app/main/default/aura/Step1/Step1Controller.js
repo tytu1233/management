@@ -14,7 +14,8 @@
                 type: "currency",
                 sortable: false,
                 typeAttributes: {currencyCode: "USD"}
-            }
+            },
+            {label: "External", fieldName: "isExternal", type: "boolean", sortable: false},
         ]);
         Promise.allSettled([helper.fetchOpportunityProducts(component), helper.fetchProducts(component), helper.fetchCategories(component)])
             .then((resp) => console.log(resp))

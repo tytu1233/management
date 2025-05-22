@@ -91,6 +91,18 @@ public with sharing class OrderService {
             update opportunity.get(0);
     }
 
+    public static List<Product2> getProducts(String orderId) {
+        List<OrderItem> orderItems = [SELECT Product2Id FROM OrderItem WHERE OrderId = :orderId];
+
+        Set<Id> productIds = new Set<Id>();
+
+        for(OrderItem orderItem : orderItems) {
+            productIds.add(orderItem.Product2Id);
+        }
+
+        return [SELECT Id, Name, Base_Price__c, IsExternal__c, ExternalId__c FROM Product2 WHERE Id IN :productIds];
+    }
+
     public class ProductOrderDTO {
         @AuraEnabled public String productId { get; set; }
         @AuraEnabled public String category { get; set; }

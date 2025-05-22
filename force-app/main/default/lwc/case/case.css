@@ -1,0 +1,15 @@
+/**
+ * Created by patryk.witkowski_bri on 5/19/2025.
+ */
+
+ .spinner-container {
+     position: relative;
+     top: 0;
+     left: 0;
+     height: 60vh;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background: rgba(255, 255, 255, 0.8);
+     z-index: 9999;
+ }

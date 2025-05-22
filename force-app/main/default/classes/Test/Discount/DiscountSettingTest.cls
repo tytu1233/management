@@ -5,29 +5,16 @@
 @IsTest
 private class DiscountSettingTest {
 
-    // Mock Custom Metadata Type record for testing
-    private static Discount_Strategy_Setting__mdt createMockDiscountStrategySetting(String strategyType) {
-        return new Discount_Strategy_Setting__mdt(
-                Strategy_Types__c = strategyType
-        );
-    }
-
     @IsTest
     static void testGetDiscountsSettings_ValidData() {
-        // Arrange
-        Discount_Strategy_Setting__mdt mockSetting = createMockDiscountStrategySetting('Combine');
-        List<Discount_Strategy_Setting__mdt> mockSettings = new List<Discount_Strategy_Setting__mdt>{mockSetting};
 
-        // Mock SOQL query
         Test.startTest();
-        // Simulate CMDT query
         System.assert(true, 'Running in test context');
         List<DiscountSettings.DiscountDTO> result = DiscountSettings.getDiscountsSettings();
         System.debug('WHATS THE RESULT');
         System.debug(result);
         Test.stopTest();
 
-        // Assert
         Assert.areEqual(1, result.size(), 'One DiscountDTO should be returned');
         Assert.areEqual('Combine', result[0].label, 'Label should match strategy type');
         Assert.areEqual('Combine', result[0].value, 'Value should match strategy type');
@@ -35,10 +22,6 @@ private class DiscountSettingTest {
 
     @IsTest
     static void testGetDiscountsSettings_NoSettings() {
-        // Arrange
-        List<Discount_Strategy_Setting__mdt> mockSettings = new List<Discount_Strategy_Setting__mdt>();
-
-        // Mock SOQL query
         Test.startTest();
         try {
             DiscountSettings.getDiscountsSettings();
@@ -54,12 +37,9 @@ private class DiscountSettingTest {
 
     @IsTest
     static void testUpdateDiscountSetting_DeploymentFailure() {
-        // Arrange
         String metadataType = 'Percentage';
 
-        // Mock metadata deployment failure
         Test.startTest();
-        //Test.setMock(Metadata.DeployCallback.class, new MockDeployCallback(false));
         try {
             DiscountSettings.updateDiscountSetting(metadataType);
             Assert.isFalse(false, 'Expected AuraHandledException for deployment failure');
@@ -69,13 +49,10 @@ private class DiscountSettingTest {
         Test.stopTest();
     }
 
-    // Test updateDiscountSetting with invalid input
     @IsTest
     static void testUpdateDiscountSetting_InvalidInput() {
-        // Arrange
         String metadataType = null;
 
-        // Act & Assert
         Test.startTest();
         try {
             DiscountSettings.updateDiscountSetting(metadataType);

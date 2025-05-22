@@ -1,0 +1,58 @@
+<!--
+ - Created by patryk.witkowski_bri on 5/19/2025.
+ -->
+
+<!-- Case -->
+<template>
+    <template lwc:if={isLoading}>
+        <div class="spinner-container">
+            <div class="slds-spinner_container">
+                <div class="slds-spinner slds-spinner--medium" aria-hidden="false" role="alert">
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template lwc:else>
+        <div class="slds-modal__content slds-p-around_medium">
+            <lightning-input
+                    name="subject"
+                    onchange={handleData}
+                    label={label.LWC_Case_Subject}
+                    required>
+            </lightning-input>
+            <lightning-textarea
+                    name="description"
+                    label={label.LWC_Case_Description}
+                    onchange={handleData}>
+            </lightning-textarea>
+            <lightning-combobox
+                    name="priority"
+                    label={label.LWC_Case_Priority}
+                    value={priority}
+                    placeholder={label.LWC_Case_ChoosePriority}
+                    options={options}
+                    onchange={handleData}>
+            </lightning-combobox>
+            <div>
+                <div class="slds-text-heading_small slds-m-bottom_small slds-m-top_small">{label.LWC_Case_Complaint}</div>
+                <c-case-items order-id={recordId} onselection={handleSelected}></c-case-items>
+            </div>
+        </div>
+        <footer class="slds-modal__footer">
+            <lightning-button
+                    variant="neutral"
+                    label={label.Cancel}
+                    onclick={handleCancel}
+            ></lightning-button>
+            <lightning-button
+                    class="slds-m-left_small"
+                    variant="brand"
+                    label={label.Save}
+                    disabled={disableButton}
+                    onclick={handleSave}
+            ></lightning-button>
+        </footer>
+    </template>
+</template>

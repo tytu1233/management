@@ -22,4 +22,9 @@ public with sharing class OrderController {
             throw new AuraHandledException(ex.getMessage());
         }
     }
+
+    @AuraEnabled(Cacheable=true)
+    public static List<Product2> getOrderProducts(String orderId) {
+        return OrderService.getProducts(orderId);
+    }
 }

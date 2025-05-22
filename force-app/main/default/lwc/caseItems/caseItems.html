@@ -1,0 +1,18 @@
+<!--
+ - Created by patryk.witkowski_bri on 5/19/2025.
+ -->
+
+<!-- Case Items -->
+<template>
+    <template lwc:if={orderItems}>
+        <lightning-datatable
+                key-field="Id"
+                data={orderItems}
+                onrowselection={handleRowSelection}
+                columns={columns}
+        ></lightning-datatable>
+    </template>
+    <template if:false={orderItems}>
+        <p>{label.LWC_Case_NoOrderItems}</p>
+    </template>
+</template>
