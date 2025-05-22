@@ -69,18 +69,6 @@ private class DiscountCalculateTest {
     }
 
     class DataGenerator extends Factory {
-        public override Discount__c createDiscount() {
-            Discount__c discount = prepareDiscount()
-                    .name('Test Discount')
-                    .discountType('Percentage')
-                    .percentage(20)
-                    .active(true)
-                    .startDate(Date.today().addDays(-10))
-                    .endDate(Date.today().addDays(10))
-                    .save()
-                    .build();
-            return discount;
-        }
         public override Opportunity createOpportunity() {
             Opportunity opportunity = prepareOpportunity()
                     .name('New opportunity')

@@ -8,7 +8,12 @@ public abstract class Factory {
 
     protected DiscountBuilder prepareDiscount() {
         return new DiscountBuilder('Test ' + UUID.randomUUID())
-                .active(true);
+                .name('Test Discount')
+                .discountType('Percentage')
+                .percentage(20)
+                .active(true)
+                .startDate(Date.today().addDays(-10))
+                .endDate(Date.today().addDays(10));
     }
 
     protected ProductLoggerBuilder prepareProductLogger() {
@@ -17,8 +22,9 @@ public abstract class Factory {
 
     protected PricebookBuilder preparePricebook() {
         return new PricebookBuilder(
-                'Pricebook ' + UUID.randomUUID()
-        );
+                'Event Management Price Book'
+        )
+        .active(true);
     }
 
     protected OpportunityBuilder prepareOpportunity() {
@@ -29,14 +35,19 @@ public abstract class Factory {
                 'Kowalska',
                 'Kielce',
                 '25-124'
-        );
+        )
+        .stage('Prospecting');
     }
 
     protected ProductBuilder prepareProduct() {
         return new ProductBuilder(
             'Test ' + UUID.randomUUID(),
             25.0
-        );
+            )
+            .active(true)
+            .external(false)
+            .family('Family ' + UUID.randomUUID())
+            .productCode('CODE ' + UUID.randomUUID());
     }
 
     public virtual Product2 createProduct() {

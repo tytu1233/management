@@ -86,17 +86,6 @@ private class ProductFailedBatchTest {
     }
 
     class DataGenerator extends Factory {
-
-        public override Pricebook2 createPricebook() {
-            Pricebook2 pricebook = preparePricebook()
-                    .name('Event Management Price Book')
-                    .active(true)
-                    .save()
-                    .build();
-
-            return pricebook;
-        }
-
         public List<Product2> createProducts() {
             List<Product2> products = new List<Product2>();
 

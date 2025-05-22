@@ -28,16 +28,6 @@ private class EmailRetryTest {
     }
 
     class DataGenerator extends Factory {
-
-        public override Pricebook2 createPricebook() {
-            Pricebook2 pricebook = preparePricebook()
-                    .name('Event Management Price Book')
-                    .active(true)
-                    .save()
-                    .build();
-            return pricebook;
-        }
-
         public Product_Logger__c createProductLoggerWithProduct(String productId) {
             Product_Logger__c productLogger = prepareProductLogger()
                     .method('POST')

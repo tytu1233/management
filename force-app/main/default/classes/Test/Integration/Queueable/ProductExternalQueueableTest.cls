@@ -48,27 +48,6 @@ private class ProductExternalQueueableTest {
 
 
     class DataGenerator extends Factory {
-        public override Product2 createProduct() {
-            Product2 product = prepareProduct()
-                    .productCode('TEST001')
-                    .basePrice(200.00)
-                    .active(true)
-                    .external(false)
-                    .save()
-                    .build();
-            return product;
-        }
-
-        public override Pricebook2 createPricebook() {
-            Pricebook2 pricebook = preparePricebook()
-                    .name('Event Management Price Book')
-                    .active(true)
-                    .save()
-                    .build();
-
-            return pricebook;
-        }
-
         public override void createData() {
             createPricebook();
             createProduct();
