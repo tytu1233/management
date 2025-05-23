@@ -27,6 +27,12 @@ public abstract class Factory {
         .active(true);
     }
 
+    protected OrderBuilder prepareOrder() {
+        return new OrderBuilder(new Account(Name = 'Test'))
+                .startDate(Date.today())
+                .eventDate(Datetime.now());
+    }
+
     protected OpportunityBuilder prepareOpportunity() {
         return new OpportunityBuilder(
                 'Opportunity ' + UUID.randomUUID(),
@@ -37,6 +43,13 @@ public abstract class Factory {
                 '25-124'
         )
         .stage('Prospecting');
+    }
+
+    protected CaseBuilder prepareCase() {
+        return new CaseBuilder()
+                .priority('Medium')
+                .subject('Test subject ' + UUID.randomUUID())
+                .description('Test description ' + UUID.randomUUID());
     }
 
     protected ProductBuilder prepareProduct() {
@@ -55,6 +68,20 @@ public abstract class Factory {
                 .save()
                 .build();
         return product;
+    }
+
+    public virtual Case createCase() {
+        Case caseToInsert = prepareCase()
+                .save()
+                .build();
+        return caseToInsert;
+    }
+
+    public virtual Order createOrder() {
+        Order order = prepareOrder()
+                .save()
+                .build();
+        return order;
     }
 
     public virtual Discount__c createDiscount() {
