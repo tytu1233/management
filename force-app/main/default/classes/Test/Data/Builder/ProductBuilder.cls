@@ -37,6 +37,11 @@ public class ProductBuilder {
         return this;
     }
 
+    public ProductBuilder externalId(String externalId) {
+        this.product.ExternalId__c = externalId;
+        return this;
+    }
+
     public ProductBuilder productCode(String code) {
         this.product.ProductCode = code;
         return this;

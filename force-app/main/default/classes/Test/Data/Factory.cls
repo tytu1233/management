@@ -20,6 +20,10 @@ public abstract class Factory {
         return new ProductLoggerBuilder();
     }
 
+    protected AccountBuilder prepareAccount() {
+        return new AccountBuilder();
+    }
+
     protected PricebookBuilder preparePricebook() {
         return new PricebookBuilder(
                 'Event Management Price Book'
@@ -28,9 +32,13 @@ public abstract class Factory {
     }
 
     protected OrderBuilder prepareOrder() {
-        return new OrderBuilder(new Account(Name = 'Test'))
+        return new OrderBuilder(
+                'Kowalska',
+                'Kielce',
+                '25-124')
                 .startDate(Date.today())
-                .eventDate(Datetime.now());
+                .eventDate(Datetime.now().addDays(10))
+                .payment('Waiting');
     }
 
     protected OpportunityBuilder prepareOpportunity() {
@@ -75,6 +83,13 @@ public abstract class Factory {
                 .save()
                 .build();
         return caseToInsert;
+    }
+
+    public virtual Account createAccount() {
+        Account account = prepareAccount()
+                .save()
+                .build();
+        return account;
     }
 
     public virtual Order createOrder() {
