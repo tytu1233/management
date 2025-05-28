@@ -6,34 +6,60 @@ public with sharing class CaseService {
     public static CaseResponseDTO createCaseAndPublishEvent(CaseEventDTO caseData) {
         CaseResponseDTO caseResponseDTO = new CaseResponseDTO();
 
+        List<Order> orders = [
+                SELECT Id
+                FROM Order
+                WHERE Id = :caseData.orderId
+        ];
+
         Case caseToInsert = new Case(
                 Subject = caseData.subject,
                 Description = caseData.description,
                 Status = 'New',
                 Origin = 'Web',
+                Order__c = caseData.orderId,
                 Priority = caseData.priority
         );
 
         insert caseToInsert;
 
+        if(orders.isEmpty()) {
+            throw new HandledException('There is no such record');
+        }
+
+        orders.get(0).Case__c = caseToInsert.Id;
+        update orders;
+
         caseResponseDTO.caseId = caseToInsert.Id;
         caseResponseDTO.containsExternal = false;
         List<Case_Product__c> caseProducts = new List<Case_Product__c>();
 
+        List<OrderItem> orderItems = [
+                SELECT Product2Id, Id, OrderId, Product2.Name, Product2.ExternalId__c, Product2.IsExternal__c
+                FROM OrderItem
+                WHERE OrderId = :caseData.orderId
+                AND Product2Id IN :caseData.selectedItems
+        ];
+
         String productIds = '';
 
-        for(Product2 product : caseData.selectedItems) {
+        for(OrderItem orderItem : orderItems) {
             Case_Product__c caseProduct = new Case_Product__c(
                     Case__c = caseToInsert.Id,
-                    Product__c = product.Id
+                    Product__c = orderItem.Product2Id,
+                    Order_Product__c = orderItem.Id,
+                    Status__c = Utils.CASES.STATUS.PENDING
             );
-            if(product.IsExternal__c) {
-                productIds += product.ExternalId__c + ',';
+            if(orderItem.Product2.IsExternal__c) {
+                productIds += orderItem.Product2.ExternalId__c + ',';
+                caseProduct.ToExternal__c = true;
             }
             caseProducts.add(caseProduct);
         }
 
         insert caseProducts;
+
+        CaseProductApprovalService.createCaseProductsRequest(caseProducts);
 
         if(!String.isBlank(productIds)) {
             Case_Notification__e caseNotification = new Case_Notification__e();

@@ -48,6 +48,7 @@
         <members>Case_Notification__e</members>
         <members>Case_Product__c</members>
         <members>Case_Response__e</members>
+        <members>Case_Product_Approval__e</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -101,10 +102,12 @@
         <members>Lead_Record_Page</members>
         <members>Lead_Record_Page1</members>
         <members>Opportunity_Record_Page</members>
+        <members>Order_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
         <members>Create_Order_Automatically_From_Opportunity</members>
+        <members>Change_status_of_case_to_closed</members>
         <name>Flow</name>
     </types>
     <types>
@@ -170,6 +173,10 @@
         <members>sObject_Trigger_Setting.Product</members>
         <members>Trigger_Action.TA_Product_Create_AddToPricebook</members>
         <members>Trigger_Action.TA_Product_Update_AddToPricebook</members>
+        <members>Trigger_Action.TA_CaseProduct_ApprovalEvent</members>
+        <members>sObject_Trigger_Setting.Case_Product_Approval</members>
+        <members>Trigger_Action.TA_Case_ApplyComplaintToOrder</members>
+        <members>sObject_Trigger_Setting.Case</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -270,6 +277,7 @@
         <members>Save</members>
         <members>LWC_Case_ChoosePriority</members>
         <members>LWC_Case_Priority</members>
+        <members>Case_FailedCreate</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -288,6 +296,10 @@
         <members>SalesforceIntegrationCredential</members>
         <members>SalesforceIntegrationCredentialv2</members>
         <name>NamedCredential</name>
+    </types>
+    <types>
+        <members>Case_Product__c.Case_Product_Approval_Process</members>
+        <name>ApprovalProcess</name>
     </types>
     <version>63.0</version>
 </Package>

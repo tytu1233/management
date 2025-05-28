@@ -72,6 +72,10 @@ export default class Case extends NavigationMixin(LightningElement) {
         this.handleSubscribe();
         this.registerErrorListener();
     }
+
+    disconnectedCallback() {
+        this.handleUnsubscribe();
+    }
     handleSubscribe() {
         const messageCallback = (response) => {
             console.log('New message received: ', JSON.stringify(response));
@@ -95,9 +99,11 @@ export default class Case extends NavigationMixin(LightningElement) {
     }
 
     handleUnsubscribe() {
-        unsubscribe(this.subscription, (response) => {
-            console.log('Unsubscribe response: ', JSON.stringify(response));
-        });
+        unsubscribe(this.subscription, (messageCallback) => {
+            console.log(messageCallback);
+            console.log('unsubscribe event succeed: ' + messageCallback.successful);
+        })
+        this.subscription = {};
     }
 
     registerErrorListener() {

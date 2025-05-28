@@ -92,6 +92,13 @@
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>Case_FailedCreate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Case_FailedCreate</shortDescription>
+        <value>Couldn&apos;t create case or publish the event.</value>
+    </labels>
+    <labels>
         <fullName>CreateOrder_Step1_Products</fullName>
         <language>en_US</language>
         <protected>true</protected>

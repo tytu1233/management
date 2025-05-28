@@ -8,7 +8,7 @@ public with sharing class CaseController {
         try {
             return CaseService.createCaseAndPublishEvent(caseData);
         } catch (Exception ex) {
-            throw new AuraHandledException('Couldn\'t create case or publish the event');
+            throw new AuraHandledException(Utils.CASES.ERRORS.Case_FailedCreate + ' ' + ex.getMessage());
         }
     }
 }

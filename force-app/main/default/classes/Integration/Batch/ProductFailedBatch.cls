@@ -34,7 +34,7 @@ public with sharing class ProductFailedBatch implements Database.Batchable<SObje
         try {
             retryEmail.sendEmail();
         } catch (Exception ex) {
-            throw new AuraHandledException('Couldn\'t send emails');
+            throw new HandledException('Couldn\'t send emails');
         }
 
     }

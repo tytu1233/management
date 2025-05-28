@@ -10,19 +10,39 @@ public with sharing class CaseExternalQueueable implements Queueable, Database.A
     }
 
     public void execute(QueueableContext context) {
+        List<Logger.ProductLog> caseLogs = new List<Logger.ProductLog>();
+        Logger.ProductLog caseLog = new Logger.ProductLog();
+        Http http = new Http();
+        HttpRequest request = HttpConfiguration.configureRequestPlatform(this.caseNotification);
         try {
-            Http http = new Http();
-            HttpRequest request = HttpConfiguration.configureRequestPlatform(this.caseNotification);
 
             HttpResponse response = http.send(request);
 
-            if(response.getStatusCode() == 200) {
+            if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
                 System.debug('Succeed');
             }
-
         } catch (Exception ex) {
-            System.debug('error caught');
-            System.debug(ex.getMessage());
+            Logger.ResponseDTO responseDTO = createNetworkProblemResponseLog(this.caseNotification.Id, ex.getMessage());
+            caseLog = createLog(request.getBody(), this.caseNotification.Id, new List<Logger.ResponseDTO>{responseDTO});
+        } finally {
+            caseLogs.add(caseLog);
         }
+        //Logger.logProductCallout(caseLogs, 'POST');
+    }
+
+    private static Logger.ProductLog createLog(String requestBody, String recordId, List<Logger.ResponseDTO> responseBodyLog) {
+        Logger.ProductLog productLog = new Logger.ProductLog();
+        productLog.recordId = recordId;
+        productLog.requestBody = requestBody;
+        productLog.responseBody = responseBodyLog;
+        return productLog;
+    }
+
+    private static Logger.ResponseDTO createNetworkProblemResponseLog(String recordId, String message) {
+        Logger.ResponseDTO responseDTO = new Logger.ResponseDTO();
+        responseDTO.recordId = recordId;
+        responseDTO.status = Utils.LOG.STATUS.NETWORK_PROBLEM;
+        responseDTO.message = message;
+        return responseDTO;
     }
 }

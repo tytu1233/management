@@ -12,7 +12,7 @@ public with sharing class OrderService {
             ];
 
             if (opportunity.isEmpty()) {
-                throw new AuraHandledException(Utils.OPPORTUNITY.ERRORS.OpportunityNotExist);
+                throw new HandledException(Utils.OPPORTUNITY.ERRORS.OpportunityNotExist);
             }
 
             Order order = new Order(
@@ -77,7 +77,7 @@ public with sharing class OrderService {
             ];
 
             if (orderToUpdate.isEmpty()) {
-                throw new AuraHandledException(Utils.ORDER.ERRORS.FailedUpdate);
+                throw new HandledException(Utils.ORDER.ERRORS.FailedUpdate);
             }
 
             orderToUpdate.get(0).Status = 'Activated';
@@ -100,7 +100,7 @@ public with sharing class OrderService {
             productIds.add(orderItem.Product2Id);
         }
 
-        return [SELECT Id, Name, Base_Price__c, IsExternal__c, ExternalId__c FROM Product2 WHERE Id IN :productIds];
+        return [SELECT Id, Name, Base_Price__c, IsExternal__c, ExternalId__c FROM Product2 WHERE Id IN :productIds AND Name != 'Complaint'];
     }
 
     public class ProductOrderDTO {
