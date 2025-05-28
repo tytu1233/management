@@ -32,6 +32,11 @@ public class CaseBuilder {
         return this;
     }
 
+    public CaseBuilder order(String orderId) {
+        this.caseBuild.Order__c = orderId;
+        return this;
+    }
+
     public CaseBuilder account(Account account) {
         this.caseBuild.Account = account;
         return this;

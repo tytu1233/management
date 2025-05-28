@@ -13,7 +13,7 @@ public class CaseServiceTest {
     @IsTest
     static void createCase_Success_NoExternalProducts() {
         List<Order> orders = [SELECT Id, Case__c FROM Order];
-        List<Product2> products = [SELECT Id, Name, IsExternal__c FROM Product2];
+        List<Product2> products = [SELECT Id, Name, IsExternal__c FROM Product2 WHERE IsExternal__c = FALSE];
 
         CaseService.CaseEventDTO caseEventDTO = new CaseService.CaseEventDTO();
         caseEventDTO.description = 'Test description';
@@ -97,8 +97,18 @@ public class CaseServiceTest {
             Account account = createAccount();
             Order order = prepareOrder()
                     .account(account.Id)
+                    .save()
                     .build();
             return order;
+        }
+
+        public OrderItem createOrderItemWithOrderAndProduct(String orderId, String productId) {
+            OrderItem orderItem = prepareOrderItem()
+                    .order(orderId)
+                    .product(productId)
+                    .save()
+                    .build();
+            return orderItem;
         }
 
         public Product2 createExternalProduct() {
@@ -112,8 +122,11 @@ public class CaseServiceTest {
 
         public override void createData() {
             createPricebook();
-            createProduct();
-            insert createOrder();
+            Product2 product = createProduct();
+            Order order = createOrder();
+            Product2 productExternal = createExternalProduct();
+            createOrderItemWithOrderAndProduct(order.Id, product.Id);
+            createOrderItemWithOrderAndProduct(order.Id, productExternal.Id);
         }
     }
 }

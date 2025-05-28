@@ -20,6 +20,11 @@ public class OrderBuilder {
         return this;
     }
 
+    public OrderBuilder pricebook(String pricebookId) {
+        this.order.Pricebook2Id = pricebookId;
+        return this;
+    }
+
     public OrderBuilder account(String accountID) {
         this.order.AccountId = accountID;
         return this;
@@ -57,6 +62,11 @@ public class OrderBuilder {
 
     public OrderBuilder eventDate(Datetime eventDate) {
         this.order.Event_Date__c = eventDate;
+        return this;
+    }
+
+    public OrderBuilder finalPrice(Decimal finalPrice) {
+        this.order.Final_Price__c = finalPrice;
         return this;
     }
 

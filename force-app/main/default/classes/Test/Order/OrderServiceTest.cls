@@ -106,8 +106,8 @@ private class OrderServiceTest {
         Test.startTest();
         try {
             OrderService.createOrder(invalidOppId, products, discountAmount, discountIds);
-        } catch (AuraHandledException e) {
-            Assert.areEqual('Script-thrown exception', e.getMessage(), 'Exception message should match');
+        } catch (Exception e) {
+            Assert.areEqual('Opportunity with provided ID does not exist.', e.getMessage(), 'Exception message should match');
         }
         Test.stopTest();
     }

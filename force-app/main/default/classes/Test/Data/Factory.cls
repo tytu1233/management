@@ -20,8 +20,23 @@ public abstract class Factory {
         return new ProductLoggerBuilder();
     }
 
+    protected OrderItemBuilder prepareOrderItem() {
+        return new OrderItemBuilder()
+                .quantity(1)
+                .unitPrice(200.0)
+                .listPrice(200.0);
+    }
+
     protected AccountBuilder prepareAccount() {
         return new AccountBuilder();
+    }
+
+    protected CaseProductBuilder prepareCaseProduct() {
+        return new CaseProductBuilder()
+                .name('Test ' + UUID.randomUUID())
+                .strategy('Partially refund')
+                .status('Approved')
+                .returnPercentage(5);
     }
 
     protected PricebookBuilder preparePricebook() {
@@ -36,6 +51,7 @@ public abstract class Factory {
                 'Kowalska',
                 'Kielce',
                 '25-124')
+                .finalPrice(5000.0)
                 .startDate(Date.today())
                 .eventDate(Datetime.now().addDays(10))
                 .payment('Waiting');
@@ -60,10 +76,14 @@ public abstract class Factory {
                 .description('Test description ' + UUID.randomUUID());
     }
 
+    protected CaseProductApprovalBuilder prepareCaseProductApproval() {
+        return new CaseProductApprovalBuilder();
+    }
+
     protected ProductBuilder prepareProduct() {
         return new ProductBuilder(
             'Test ' + UUID.randomUUID(),
-            25.0
+            200.0
             )
             .active(true)
             .external(false)
@@ -83,6 +103,19 @@ public abstract class Factory {
                 .save()
                 .build();
         return caseToInsert;
+    }
+
+    public virtual OrderItem createOrderItem() {
+        OrderItem orderItem = prepareOrderItem()
+                .save()
+                .build();
+        return orderItem;
+    }
+
+    public virtual Case_Product_Approval__e createCaseProductApproval() {
+        Case_Product_Approval__e caseProductApproval = prepareCaseProductApproval()
+                .build();
+        return caseProductApproval;
     }
 
     public virtual Account createAccount() {
