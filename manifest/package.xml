@@ -298,7 +298,6 @@
         <name>NamedCredential</name>
     </types>
     <types>
-        <members>Case_Product__c.Case_Product_Approval_Process</members>
         <name>ApprovalProcess</name>
     </types>
     <version>63.0</version>
