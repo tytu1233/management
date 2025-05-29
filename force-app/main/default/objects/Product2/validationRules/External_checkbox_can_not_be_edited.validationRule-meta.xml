@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_checkbox_can_not_be_edited</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    NOT(ISNEW()),
+    ISCHANGED( IsExternal__c )
+)</errorConditionFormula>
+    <errorDisplayField>IsExternal__c</errorDisplayField>
+    <errorMessage>This field can not be updated.</errorMessage>
+</ValidationRule>

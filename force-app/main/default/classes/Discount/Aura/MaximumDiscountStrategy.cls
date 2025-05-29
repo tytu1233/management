@@ -20,7 +20,6 @@ public class MaximumDiscountStrategy implements DiscountStrategy {
                 maximumPrice = currentPrice;
                 discountID = discount.Id;
             }
-            //maximumPrice = Math.max(maximumPrice, currentPrice);
         }
         discountOrderDTO.priceAfterDiscount = maximumPrice.setScale(2, RoundingMode.HALF_UP);
         discountOrderDTO.discountIds = new Set<Id> {discountID};

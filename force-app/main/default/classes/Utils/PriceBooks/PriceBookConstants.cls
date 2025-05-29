@@ -10,5 +10,11 @@ public class PriceBookConstants {
             MomentumPriceBookSingleton momentumPriceBookSingleton = MomentumPriceBookSingleton.getInstance();
             return momentumPriceBookSingleton.getPriceBookId();
         } }
+
+        public String StandardBook { get {
+            if(Test.isRunningTest()) return Test.getStandardPricebookId();
+            StandardPriceBookSingleton standardPriceBookSingleton = StandardPriceBookSingleton.getInstance();
+            return standardPriceBookSingleton.getId();
+        } }
     }
 }

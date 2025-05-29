@@ -9,6 +9,12 @@ private class OrderServiceTest {
             Account acc = new Account(Name = 'Test Account');
             insert acc;
 
+            Pricebook2 customPB = new Pricebook2(
+                    Name = 'Event Management Price Book',
+                    IsActive = true
+            );
+            insert customPB;
+
             Opportunity opp = new Opportunity(
                     Name = 'Test Opportunity',
                     AccountId = acc.Id,
@@ -25,33 +31,11 @@ private class OrderServiceTest {
 
             Product2 prod = new Product2(
                     Name = 'Test Product',
-                    IsActive = true
+                    IsActive = true,
+                    Base_Price__c = 100,
+                    IsExternal__c = true
             );
             insert prod;
-
-            Id standardPricebookId = Test.getStandardPricebookId();
-
-            PricebookEntry standardPbe = new PricebookEntry(
-                    Pricebook2Id = standardPricebookId,
-                    Product2Id = prod.Id,
-                    UnitPrice = 100.00,
-                    IsActive = true
-            );
-            insert standardPbe;
-
-            Pricebook2 customPB = new Pricebook2(
-                    Name = 'Event Management Price Book',
-                    IsActive = true
-            );
-            insert customPB;
-
-            PricebookEntry customPbe = new PricebookEntry(
-                    Pricebook2Id = customPB.Id,
-                    Product2Id = prod.Id,
-                    UnitPrice = 100.00,
-                    IsActive = true
-            );
-            insert customPbe;
 
             Discount__c discount = new Discount__c(
                     Name = 'Test Discount',
@@ -122,8 +106,8 @@ private class OrderServiceTest {
         Test.startTest();
         try {
             OrderService.createOrder(invalidOppId, products, discountAmount, discountIds);
-        } catch (AuraHandledException e) {
-            Assert.areEqual('Script-thrown exception', e.getMessage(), 'Exception message should match');
+        } catch (Exception e) {
+            Assert.areEqual('Opportunity with provided ID does not exist.', e.getMessage(), 'Exception message should match');
         }
         Test.stopTest();
     }
