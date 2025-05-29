@@ -13,7 +13,10 @@ private class TA_CaseProduct_ApprovalEvent_Test {
     @IsTest
     static void caseProductsShouldBeUpdated_Success() {
         List<Case> cases = [SELECT Id FROM Case];
-        List<Product2> products = [SELECT Id, ExternalId__c FROM Product2];
+        List<Product2> products = [
+                SELECT Id, ExternalId__c
+                FROM Product2
+        ];
 
         List<Case_Product_Approval__e> caseProductApprovals = new List<Case_Product_Approval__e>();
         Case_Product_Approval__e caseProductApproval = new DataGenerator().createCaseProductApproval(cases.get(0).Id, products.get(0).Id);
