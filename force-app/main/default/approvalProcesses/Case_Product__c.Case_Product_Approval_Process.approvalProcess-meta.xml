@@ -31,14 +31,14 @@
     </entryCriteria>
     <finalApprovalActions>
         <action>
-            <name>Status_changed_to_closed</name>
+            <name>Status_changed_to_approved</name>
             <type>FieldUpdate</type>
         </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
-            <name>Change_status_to_closed</name>
+            <name>Status_changed_to_rejected</name>
             <type>FieldUpdate</type>
         </action>
     </finalRejectionActions>
