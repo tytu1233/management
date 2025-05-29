@@ -85,7 +85,7 @@ export default class Case extends NavigationMixin(LightningElement) {
                 this.showToast('Success', response.data.payload.Status__c, 'success');
                 this.dispatchEvent(new CloseActionScreenEvent());
             } else {
-                this.showToast('Error', response.data.payload.Status__c, 'error');
+                this.showToast('Error', 'We couldnt send case to another org. Please try again.', 'error');
             }
         };
 
@@ -138,7 +138,7 @@ export default class Case extends NavigationMixin(LightningElement) {
             }
         } catch (error) {
             console.log(error);
-            this.showToast('Error', error.body.message, 'error');
+            this.showToast('Error', 'We couldnt send case to another org. Please try again.', 'error');
             this.isLoading = false;
         }
     }

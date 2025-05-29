@@ -11,6 +11,7 @@ public class CaseConstants {
     }
 
     public class Status {
-        public String PENDING { get { return 'Pending'; } }
+        public String Pending { get { return 'Pending'; } }
+        public String Closed { get { return 'Closed'; } }
     }
 }

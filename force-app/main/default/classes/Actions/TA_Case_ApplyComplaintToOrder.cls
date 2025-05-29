@@ -7,7 +7,7 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
         //key is an ID OF case, value is a order id
         Map<Id, Id> orderMapCase = new Map<Id, Id>();
         for(Case caseItem : (List <Case>) triggerNew) {
-            if(caseItem.Status.equalsIgnoreCase('Closed') && caseItem.Order__c != null) {
+            if(caseItem.Status.equalsIgnoreCase(Utils.CASES.STATUS.Closed) && caseItem.Order__c != null) {
                 orderMapCase.put(caseItem.Id, caseItem.Order__c);
             }
         }
@@ -19,7 +19,7 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
         List<Case_Product__c> caseProducts = [
                 SELECT Id, Name, Case__c, Product__c, Return_percentage__c, Order_Product__c, Order_Product__r.OrderId, Order_Product__r.UnitPrice
                 FROM Case_Product__c
-                WHERE Case__c IN :orderMapCase.keySet() AND Status__c = 'Approved'
+                WHERE Case__c IN :orderMapCase.keySet() AND Status__c = :Utils.CASE_PRODUCT.STATUS.Approved
         ];
 
         if(caseProducts.isEmpty()) {
@@ -28,8 +28,7 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
 
         Map<Id, Decimal> orderPriceAdjustments = new Map<Id, Decimal>();
 
-        System.debug('CASEPRODUCTS');
-        System.debug(caseProducts);
+
         for(Case_Product__c cp : caseProducts) {
             Decimal adjustment = (cp.Order_Product__r.UnitPrice * (cp.Return_percentage__c / 100.0));
             Decimal currentAdjustment = orderPriceAdjustments.get(cp.Order_Product__r.OrderId) ?? 0;
@@ -86,8 +85,8 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
         ]);
 
         for(Order order : orderMap.values()) {
-            if(order.Status != 'Draft') {
-                order.Status = 'Draft';
+            if(order.Status != Utils.ORDER.STATUS.Draft) {
+                order.Status = Utils.ORDER.STATUS.Draft;
             }
         }
 
@@ -113,7 +112,7 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
 
             ordersToUpdate.add(new Order(
                     Id = orderId,
-                    Status = 'Activated',
+                    Status = Utils.ORDER.STATUS.Activated,
                     Final_Price__c = order.Final_Price__c + adjustment
             ));
         }
