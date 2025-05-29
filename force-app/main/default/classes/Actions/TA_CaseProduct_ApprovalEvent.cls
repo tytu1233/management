@@ -9,7 +9,6 @@ public with sharing class TA_CaseProduct_ApprovalEvent implements TriggerAction.
         for(Case_Product_Approval__e caseProductApproval : triggerNew) {
             List<Wrapper> caseProductApprovalJSON = (List<Wrapper>) JSON.deserialize(caseProductApproval.Approval_Status__c.toString(), List<Wrapper>.class);
             events.add(caseProductApprovalJSON.get(0));
-            System.debug(caseProductApprovalJSON);
         }
 
         Set<Id> caseIds = new Set<Id>();

@@ -20,7 +20,7 @@ private class TA_CaseProduct_ApprovalEvent_Test {
         caseProductApprovals.add(caseProductApproval);
 
         Test.startTest();
-        new TA_CaseProduct_ApprovalEvent().afterInsert(caseProductApprovals);
+        EventBus.publish(caseProductApproval);
         Test.stopTest();
 
         for(Case_Product__c caseProduct : [SELECT Id, Name, Case__c, Product__c, Return_percentage__c, Strategy__c, Status__c, Description__c FROM Case_Product__c]) {
