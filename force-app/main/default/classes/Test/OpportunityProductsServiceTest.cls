@@ -2,17 +2,23 @@
  * Created by patryk.witkowski_bri on 5/7/2025.
  */
 
-@isTest
+@IsTest
 private class OpportunityProductsServiceTest {
 
-    @isTest
+    @TestSetup
+    static void setup() {
+        Pricebook2 pricebook2 = new Pricebook2(Name = 'Event Management Price Book', IsActive = true);
+        insert pricebook2;
+    }
+
+    @IsTest
     static void testGetProductsWithFilters() {
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
-        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true));
-        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false));
-        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false, IsExternal__c = true));
+        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true, IsExternal__c = true));
         insert products;
 
         List<String> categories = new List<String>{'Category1'};
@@ -33,14 +39,14 @@ private class OpportunityProductsServiceTest {
         Assert.areEqual(1, result.totalPages, 'Total pages should be 1');
     }
 
-    @isTest
+    @IsTest
     static void testGetCategoriesSuccess() {
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
-        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true));
-        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false));
-        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product C', Family = 'Category2', Base_Price__c = 150.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Inactive Product', Family = 'Category2', Base_Price__c = 300.0, IsActive = false, IsExternal__c = true));
+        products.add(new Product2(Name = 'No Family Product', Family = null, Base_Price__c = 400.0, IsActive = true, IsExternal__c = true));
         insert products;
 
         Test.startTest();
@@ -55,7 +61,7 @@ private class OpportunityProductsServiceTest {
 
         Set<String> expectedCategories = new Set<String>{'Category1', 'Category2'};
         for (OpportunityProductsService.CategoryDTO category : result.productsCategories) {
-            System.assert(expectedCategories.contains(category.label), 'Category label should be Category1 or Category2');
+            Assert.isTrue(expectedCategories.contains(category.label), 'Category label should be Category1 or Category2');
             Assert.areEqual(category.label, category.value, 'Label and value should match');
         }
     }
@@ -69,6 +75,7 @@ private class OpportunityProductsServiceTest {
         Opportunity opportunity = new Opportunity(
                 Name = 'Test Opportunity',
                 StageName = 'Prospecting',
+                Pricebook2Id = Test.getStandardPricebookId(),
                 CloseDate = Date.today().addDays(30),
                 Event_Date__c = Datetime.newInstance(2026, 12, 12, 12, 12, 12),
                 AccountId = account.Id
@@ -76,20 +83,11 @@ private class OpportunityProductsServiceTest {
         insert opportunity;
 
         List<Product2> products = new List<Product2>();
-        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true));
-        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true));
+        products.add(new Product2(Name = 'Product A', Family = 'Category1', Base_Price__c = 100.0, IsActive = true, IsExternal__c = true));
+        products.add(new Product2(Name = 'Product B', Family = 'Category1', Base_Price__c = 200.0, IsActive = true, IsExternal__c = true));
         insert products;
 
-        List<PricebookEntry> pricebookEntries = new List<PricebookEntry>();
-        for (Product2 product : products) {
-            pricebookEntries.add(new PricebookEntry(
-                    Pricebook2Id = Test.getStandardPricebookId(),
-                    Product2Id = product.Id,
-                    UnitPrice = product.Base_Price__c,
-                    IsActive = true
-            ));
-        }
-        insert pricebookEntries;
+        List<PricebookEntry> pricebookEntries = [SELECT Id, UnitPrice, Product2Id FROM PricebookEntry WHERE Pricebook2Id = :Test.getStandardPricebookId() LIMIT 2];
 
         List<OpportunityLineItem> oppLineItems = new List<OpportunityLineItem>();
         for (PricebookEntry pbe : pricebookEntries) {

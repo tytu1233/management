@@ -8,9 +8,9 @@ public with sharing class OrderController {
         try {
             OrderService.createOrder(opportunityId, products, discount, discountIds);
         } catch (DmlException ex) {
-            throw new AuraHandledException('Order creation failed: ' + ex.getDmlMessage(0));
+            throw new AuraHandledException(Utils.ORDER.ERRORS.FailedCreate + ' ' + ex.getDmlMessage(0));
         } catch(Exception ex) {
-            throw new AuraHandledException('Order creation failed: ' + ex.getMessage());
+            throw new AuraHandledException(Utils.ORDER.ERRORS.FailedCreate + ' ' + ex.getMessage());
         }
     }
 
@@ -21,5 +21,10 @@ public with sharing class OrderController {
         } catch (Exception ex) {
             throw new AuraHandledException(ex.getMessage());
         }
+    }
+
+    @AuraEnabled(Cacheable=true)
+    public static List<Product2> getOrderProducts(String orderId) {
+        return OrderService.getProducts(orderId);
     }
 }
