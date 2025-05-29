@@ -44,6 +44,11 @@
         <members>Pricebook2</members>
         <members>Discount__c</members>
         <members>Order_Discount__c</members>
+        <members>Product_Logger__c</members>
+        <members>Case_Notification__e</members>
+        <members>Case_Product__c</members>
+        <members>Case_Response__e</members>
+        <members>Case_Product_Approval__e</members>
         <name>CustomObject</name>
     </types>
     <types>
@@ -97,10 +102,12 @@
         <members>Lead_Record_Page</members>
         <members>Lead_Record_Page1</members>
         <members>Opportunity_Record_Page</members>
+        <members>Order_Record_Page</members>
         <name>FlexiPage</name>
     </types>
     <types>
         <members>Create_Order_Automatically_From_Opportunity</members>
+        <members>Change_status_of_case_to_closed</members>
         <name>Flow</name>
     </types>
     <types>
@@ -141,6 +148,8 @@
     <types>
         <members>Event_Manager</members>
         <members>Event_Users</members>
+        <members>Integration_Callout</members>
+        <members>IntegrationPlatformEvents</members>
         <name>PermissionSet</name>
     </types>
     <types>
@@ -159,6 +168,15 @@
         <members>Trigger_Action.TA_Order_CheckDateAndAddress</members>
         <members>Trigger_Action.TA_Order_FillDateAndAddress</members>
         <members>sObject_Trigger_Setting.Order</members>
+        <members>Trigger_Action.TA_Product_Create</members>
+        <members>Trigger_Action.TA_Product_Update</members>
+        <members>sObject_Trigger_Setting.Product</members>
+        <members>Trigger_Action.TA_Product_Create_AddToPricebook</members>
+        <members>Trigger_Action.TA_Product_Update_AddToPricebook</members>
+        <members>Trigger_Action.TA_CaseProduct_ApprovalEvent</members>
+        <members>sObject_Trigger_Setting.Case_Product_Approval</members>
+        <members>Trigger_Action.TA_Case_ApplyComplaintToOrder</members>
+        <members>sObject_Trigger_Setting.Case</members>
         <name>CustomMetadata</name>
     </types>
     <types>
@@ -173,6 +191,7 @@
     </types>
     <types>
         <members>Opportunity.Create_Order</members>
+        <members>Order.Create_Case</members>
         <name>QuickAction</name>
     </types>
     <types>
@@ -237,7 +256,49 @@
         <members>Step2_OrderSummary</members>
         <members>Step2_OrderValue</members>
         <members>Table_ProductName</members>
+        <members>Discount_ClassNotExist</members>
+        <members>Discount_LWC_MetadataUpdated</members>
+        <members>Error</members>
+        <members>LWC_Discount_CreatedSuccessfully</members>
+        <members>LWC_Discount_EditedSuccessfully</members>
+        <members>LWC_Discount_ErrorCreating</members>
+        <members>LWC_Discount_ErrorEditing</members>
+        <members>LWC_Discount_ErrorEditingSettings</members>
+        <members>Success</members>
+        <members>Cancel</members>
+        <members>LWC_Case_Complaint</members>
+        <members>LWC_Case_Created</members>
+        <members>LWC_Case_Description</members>
+        <members>LWC_Case_NoOrderItems</members>
+        <members>LWC_Case_Subject</members>
+        <members>LWC_Case_Table_External</members>
+        <members>LWC_Case_Table_Price</members>
+        <members>LWC_Case_Table_ProductName</members>
+        <members>Save</members>
+        <members>LWC_Case_ChoosePriority</members>
+        <members>LWC_Case_Priority</members>
+        <members>Case_FailedCreate</members>
         <name>CustomLabel</name>
+    </types>
+    <types>
+        <members>OrgIntegrationAuthProvider</members>
+        <name>AuthProvider</name>
+    </types>
+    <types>
+        <members>IntegrationOrg</members>
+        <name>ConnectedApp</name>
+    </types>
+    <types>
+        <members>SalesforceIntegrationCredentialExternal</members>
+        <name>ExternalCredential</name>
+    </types>
+    <types>
+        <members>SalesforceIntegrationCredential</members>
+        <members>SalesforceIntegrationCredentialv2</members>
+        <name>NamedCredential</name>
+    </types>
+    <types>
+        <name>ApprovalProcess</name>
     </types>
     <version>63.0</version>
 </Package>

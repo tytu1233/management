@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Full_or_parially_refund_enter_percentage</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(OR(
+ISPICKVAL(Strategy__c, &quot;Full refund&quot;),
+ISPICKVAL(Strategy__c, &quot;Partially refund&quot;)
+), ISBLANK( Return_percentage__c ))</errorConditionFormula>
+    <errorDisplayField>Return_percentage__c</errorDisplayField>
+    <errorMessage>Enter the percentage you want to return to client.</errorMessage>
+</ValidationRule>

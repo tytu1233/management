@@ -85,6 +85,20 @@
         <value>Welcome to Agentforce</value>
     </labels>
     <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Case_FailedCreate</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Case_FailedCreate</shortDescription>
+        <value>Couldn&apos;t create case or publish the event.</value>
+    </labels>
+    <labels>
         <fullName>CreateOrder_Step1_Products</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -223,6 +237,76 @@
         <protected>true</protected>
         <shortDescription>Error</shortDescription>
         <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_ChoosePriority</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_ChoosePriority</shortDescription>
+        <value>Choose priority</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Complaint</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Complaint</shortDescription>
+        <value>Select items you would like to make a complaint</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Created</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Created</shortDescription>
+        <value>Case was created successfully.</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Description</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Description</shortDescription>
+        <value>Case Description</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_NoOrderItems</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_NoOrderItems</shortDescription>
+        <value>No Order Items found.</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Priority</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Priority</shortDescription>
+        <value>Priority</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Subject</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Subject</shortDescription>
+        <value>Case Subject</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Table_External</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Table_External</shortDescription>
+        <value>External</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Table_Price</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Table_Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>LWC_Case_Table_ProductName</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>LWC_Case_Table_ProductName</shortDescription>
+        <value>Product Name</value>
     </labels>
     <labels>
         <fullName>LWC_Discount_AddDiscount</fullName>
@@ -405,6 +489,13 @@
         <protected>true</protected>
         <shortDescription>Previous</shortDescription>
         <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
     </labels>
     <labels>
         <fullName>Step1_EnterProductName</fullName>

@@ -8,7 +8,7 @@ public class TA_Order_FillDateAndAddress implements TriggerAction.BeforeInsert {
             if(order.Event_Date__c == null) {
                 order.addError(Utils.ORDER.ERRORS.DateIsNull);
             }
-            if(String.isBlank(order.Event_Address__City__s) || String.isBlank(order.Event_Address__PostalCode__s) || String.isBlank(order.Event_Address__CountryCode__s) || String.isBlank(order.Event_Address__Street__s)) {
+            if(String.isBlank(order.Event_Address__City__s) || String.isBlank(order.Event_Address__PostalCode__s) || String.isBlank(order.Event_Address__Street__s)) {
                 order.addError(Utils.ORDER.ERRORS.AddressIncompleteOrEmpty);
             }
         }
