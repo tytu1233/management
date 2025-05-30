@@ -57,7 +57,7 @@ public with sharing class DiscountSettings {
     public class CustomMetadataCallback implements Metadata.DeployCallback {
         public void handleResult(Metadata.DeployResult result, Metadata.DeployCallbackContext context) {
             if (result.status != Metadata.DeployStatus.SUCCEEDED) {
-                throw new AuraHandledException(Utils.DISCOUNT.ERRORS.MetadataUpdateFailed);
+                throw new HandledException(Utils.DISCOUNT.ERRORS.MetadataUpdateFailed);
             }
         }
     }
