@@ -23,11 +23,11 @@ public with sharing class OrderService {
                     Event_Address__CountryCode__s = opportunity.get(0).Event_Address__CountryCode__s,
                     Event_Address__PostalCode__s = opportunity.get(0).Event_Address__PostalCode__s,
                     Event_Address__StateCode__s = opportunity.get(0).Event_Address__StateCode__s,
-                    Status = 'Draft',
+                    Status = Utils.ORDER.STATUS.Draft,
                     OpportunityId = opportunityId,
                     Pricebook2Id = Id.valueOf(Utils.PRICE_BOOK.IDS.MomentumEvents),
                     EffectiveDate = Date.today(),
-                    Payment_Status__c = 'Waiting'
+                    Payment_Status__c = Utils.ORDER.PAYMENT_STATUS.Waiting
             );
 
             insert order;
@@ -80,13 +80,13 @@ public with sharing class OrderService {
                 throw new HandledException(Utils.ORDER.ERRORS.FailedUpdate);
             }
 
-            orderToUpdate.get(0).Status = 'Activated';
+            orderToUpdate.get(0).Status = Utils.ORDER.STATUS.Activated;
             orderToUpdate.get(0).Total_Discount__c = discount;
             orderToUpdate.get(0).Final_Price__c = orderToUpdate.get(0).TotalAmount - discount;
 
             update orderToUpdate.get(0);
 
-            opportunity.get(0).StageName = 'Closed Won';
+            opportunity.get(0).StageName = Utils.ORDER.STAGE.ClosedWon;
 
             update opportunity.get(0);
     }

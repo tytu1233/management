@@ -8,6 +8,7 @@ public class CaseConstants {
 
     public class Errors {
         public String Case_FailedCreate { get { return Label.Case_FailedCreate; } }
+        public String Case_RecordNotExist { get { return Label.Case_Error_RecordNotExist; } }
     }
 
     public class Status {

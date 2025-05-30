@@ -278,6 +278,13 @@
         <members>LWC_Case_ChoosePriority</members>
         <members>LWC_Case_Priority</members>
         <members>Case_FailedCreate</members>
+        <members>CaseProducts_NoRecords</members>
+        <members>Case_Error_RecordNotExist</members>
+        <members>Discount_Metadata_Update_Failed</members>
+        <members>Discount_Setting_Error_Update</members>
+        <members>PriceBook_Error_NotExist</members>
+        <members>Product_Error_ComplaintNotExist</members>
+        <members>Retry_Couldnt_Send_Emails</members>
         <name>CustomLabel</name>
     </types>
     <types>

@@ -4,7 +4,7 @@
 
 public with sharing class DiscountSettings {
 
-    private static final String settingName = 'Strategy';
+    private static final String settingName = Utils.DISCOUNT.SETTING.SETTING;
 
     @AuraEnabled(Cacheable=true)
     public static List<DiscountDTO> getDiscountsSettings() {
@@ -47,22 +47,17 @@ public with sharing class DiscountSettings {
             metadataContainer.addMetadata(customMetadata);
 
             CustomMetadataCallback callback = new CustomMetadataCallback();
-            Id deploymentId = Metadata.Operations.enqueueDeployment(metadataContainer, callback);
+            Metadata.Operations.enqueueDeployment(metadataContainer, callback);
 
-            System.debug('Deployment ID: ' + deploymentId);
         } catch (Exception ex) {
-            System.debug('Exception: ' + ex.getMessage());
-            throw new AuraHandledException('Couldn\'t update discount settings');
+            throw new HandledException(Utils.DISCOUNT.ERRORS.SettingErrorUpdate);
         }
     }
 
     public class CustomMetadataCallback implements Metadata.DeployCallback {
         public void handleResult(Metadata.DeployResult result, Metadata.DeployCallbackContext context) {
-            if (result.status == Metadata.DeployStatus.SUCCEEDED) {
-                System.debug('Metadata update successful.');
-            } else {
-                System.debug('Metadata update failed: ' + result.details.componentFailures);
-                throw new AuraHandledException('Metadata update failed');
+            if (result.status != Metadata.DeployStatus.SUCCEEDED) {
+                throw new AuraHandledException(Utils.DISCOUNT.ERRORS.MetadataUpdateFailed);
             }
         }
     }

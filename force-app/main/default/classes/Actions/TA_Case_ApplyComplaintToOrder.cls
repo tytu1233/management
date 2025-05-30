@@ -23,7 +23,7 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
         ];
 
         if(caseProducts.isEmpty()) {
-            throw new HandledException('No case products records');
+            throw new HandledException(Utils.CASE_PRODUCT.ERROR.NoRecords);
         }
 
         Map<Id, Decimal> orderPriceAdjustments = new Map<Id, Decimal>();
@@ -125,7 +125,6 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
                 update ordersToUpdate;
             }
         } catch (Exception e) {
-            System.debug('Error updating Order or OrderItems: ' + e.getMessage());
             throw new HandledException(e.getMessage());
         }
     }

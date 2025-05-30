@@ -23,8 +23,8 @@ public with sharing class CaseService {
 
         insert caseToInsert;
 
-        if(orders.isEmpty()) {
-            throw new HandledException('There is no such record');
+        if (orders.isEmpty()) {
+            throw new HandledException(Utils.CASES.ERRORS.Case_RecordNotExist);
         }
 
         orders.get(0).Case__c = caseToInsert.Id;
@@ -43,14 +43,14 @@ public with sharing class CaseService {
 
         String productIds = '';
 
-        for(OrderItem orderItem : orderItems) {
+        for (OrderItem orderItem : orderItems) {
             Case_Product__c caseProduct = new Case_Product__c(
                     Case__c = caseToInsert.Id,
                     Product__c = orderItem.Product2Id,
                     Order_Product__c = orderItem.Id,
-                    Status__c = Utils.CASES.STATUS.PENDING
+                    Status__c = Utils.CASES.STATUS.Pending
             );
-            if(orderItem.Product2.IsExternal__c) {
+            if (orderItem.Product2.IsExternal__c) {
                 productIds += orderItem.Product2.ExternalId__c + ',';
                 caseProduct.ToExternal__c = true;
             }
@@ -61,7 +61,7 @@ public with sharing class CaseService {
 
         CaseProductApprovalService.createCaseProductsRequest(caseProducts);
 
-        if(!String.isBlank(productIds)) {
+        if (!String.isBlank(productIds)) {
             Case_Notification__e caseNotification = new Case_Notification__e();
             caseNotification.Subject__c = caseData.subject;
             caseNotification.Description__c = caseData.description;

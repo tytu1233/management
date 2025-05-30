@@ -16,7 +16,7 @@ public with sharing class StandardPriceBookSingleton {
         ];
 
         if(pb.isEmpty()) {
-            throw new AuraHandledException('Price Book does not exist');
+            throw new HandledException(Utils.PRICE_BOOK.ERROR.NotExist);
         }
 
         this.id = pb.get(0).Id;

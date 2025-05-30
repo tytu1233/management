@@ -46,8 +46,6 @@ public class DiscountService {
 
         DiscountStrategy strategy = (DiscountStrategy) strategyType.newInstance();
 
-        //DiscountStrategy strategy = strategies.get(discountSetting);
-
         List<Opportunity> opportunity = [
                 SELECT Event_Date__c
                 FROM Opportunity
@@ -71,11 +69,11 @@ public class DiscountService {
     }
 
     public static List<Discount__c> getDiscounts() {
-            List<Discount__c> discounts = [
-                    SELECT Id, Name, Discount_Amount__c, Discount_Percentage__c, Discount_Type__c, Start_Date__c, End_Date__c, Active__c
-                    FROM Discount__c
-            ];
-            return discounts;
+        List<Discount__c> discounts = [
+                SELECT Id, Name, Discount_Amount__c, Discount_Percentage__c, Discount_Type__c, Start_Date__c, End_Date__c, Active__c
+                FROM Discount__c
+        ];
+        return discounts;
     }
 
 
