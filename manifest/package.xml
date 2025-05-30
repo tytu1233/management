@@ -298,7 +298,16 @@
         <name>NamedCredential</name>
     </types>
     <types>
+        <members>Case_Product__c.Case_Product_Approval_Process</members>
         <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>Case.ChangePriorityToHigh</members>
+        <members>Case_Product__c.Change_status_to_closed</members>
+        <members>Case_Product__c.Status_changed_to_approved</members>
+        <members>Case_Product__c.Status_changed_to_closed</members>
+        <members>Case_Product__c.Status_changed_to_rejected</members>
+        <name>WorkflowFieldUpdate</name>
     </types>
     <version>63.0</version>
 </Package>
