@@ -6,13 +6,19 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
     public void afterUpdate(List<SObject> triggerNew, List<SObject> triggerOld) {
         //key is an ID OF case, value is a order id
         Map<Id, Id> orderMapCase = new Map<Id, Id>();
-        for(Case caseItem : (List <Case>) triggerNew) {
-            if(caseItem.Status.equalsIgnoreCase(Utils.CASES.STATUS.Closed) && caseItem.Order__c != null) {
+        Map<Id, SObject> oldMap = new Map<Id, SObject>(triggerOld);
+        SObjectField caseFieldStatus = Case.SObjectType.getDescribe().fields.getMap().get('Status');
+        for (Case caseItem : (List <Case>) triggerNew) {
+            Case oldCase = (Case) oldMap.get(caseItem.Id);
+            if (
+                    FieldChangeUtil.hasRecordValueChangedTo(oldCase, caseItem, caseFieldStatus,'Closed') &&
+                    caseItem.Order__c != null
+            ) {
                 orderMapCase.put(caseItem.Id, caseItem.Order__c);
             }
         }
 
-        if(orderMapCase.isEmpty()) {
+        if (orderMapCase.isEmpty()) {
             return;
         }
 
@@ -22,14 +28,14 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
                 WHERE Case__c IN :orderMapCase.keySet() AND Status__c = :Utils.CASE_PRODUCT.STATUS.Approved
         ];
 
-        if(caseProducts.isEmpty()) {
-            throw new HandledException('No case products records');
+        if (caseProducts.isEmpty()) {
+            throw new HandledException(Utils.CASE_PRODUCT.ERROR.NoRecords);
         }
 
         Map<Id, Decimal> orderPriceAdjustments = new Map<Id, Decimal>();
 
 
-        for(Case_Product__c cp : caseProducts) {
+        for (Case_Product__c cp : caseProducts) {
             Decimal adjustment = (cp.Order_Product__r.UnitPrice * (cp.Return_percentage__c / 100.0));
             Decimal currentAdjustment = orderPriceAdjustments.get(cp.Order_Product__r.OrderId) ?? 0;
             orderPriceAdjustments.put(cp.Order_Product__r.OrderId, currentAdjustment + adjustment);
@@ -37,20 +43,20 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
         //id of order and its list of discounts
         Map<Id, List<Decimal>> orderDiscountsMap = new Map<Id, List<Decimal>>();
 
-        for(Order_Discount__c orderDiscount : [
+        for (Order_Discount__c orderDiscount : [
                 SELECT Order__c, Discount__r.Discount_Percentage__c, Discount__r.Discount_Amount__c
                 FROM Order_Discount__c
                 WHERE Order__c IN :orderPriceAdjustments.keySet()
         ]) {
-            if(orderDiscountsMap.get(orderDiscount.Order__c) == null) {
+            if (orderDiscountsMap.get(orderDiscount.Order__c) == null) {
                 orderDiscountsMap.put(orderDiscount.Order__c, new List<Decimal>());
             }
 
-            if(orderDiscount.Discount__r.Discount_Percentage__c != null) {
+            if (orderDiscount.Discount__r.Discount_Percentage__c != null) {
                 orderDiscountsMap.get(orderDiscount.Order__c).add(orderDiscount.Discount__r.Discount_Percentage__c / 100);
             }
 
-            if(orderDiscount.Discount__r.Discount_Amount__c != null) {
+            if (orderDiscount.Discount__r.Discount_Amount__c != null) {
                 orderDiscountsMap.get(orderDiscount.Order__c).add(orderDiscount.Discount__r.Discount_Amount__c);
             }
         }
@@ -84,13 +90,13 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
                 WHERE Id IN :orderPriceAdjustments.keySet()
         ]);
 
-        for(Order order : orderMap.values()) {
-            if(order.Status != Utils.ORDER.STATUS.Draft) {
+        for (Order order : orderMap.values()) {
+            if (order.Status != Utils.ORDER.STATUS.Draft) {
                 order.Status = Utils.ORDER.STATUS.Draft;
             }
         }
 
-        if(!orderMap.values().isEmpty()) {
+        if (!orderMap.values().isEmpty()) {
             update orderMap.values();
         }
 
@@ -125,7 +131,6 @@ public with sharing class TA_Case_ApplyComplaintToOrder implements TriggerAction
                 update ordersToUpdate;
             }
         } catch (Exception e) {
-            System.debug('Error updating Order or OrderItems: ' + e.getMessage());
             throw new HandledException(e.getMessage());
         }
     }

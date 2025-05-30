@@ -92,6 +92,20 @@
         <value>Cancel</value>
     </labels>
     <labels>
+        <fullName>CaseProducts_NoRecords</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CaseProducts_NoRecords</shortDescription>
+        <value>No case products records</value>
+    </labels>
+    <labels>
+        <fullName>Case_Error_RecordNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Case_Error_RecordNotExist</shortDescription>
+        <value>There is no such record</value>
+    </labels>
+    <labels>
         <fullName>Case_FailedCreate</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -127,6 +141,13 @@
         <value>Metadata update enqueued successfully</value>
     </labels>
     <labels>
+        <fullName>Discount_Metadata_Update_Failed</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_Metadata_Update_Failed</shortDescription>
+        <value>Metadata update failed.</value>
+    </labels>
+    <labels>
         <fullName>Discount_ModeNotExist</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -146,6 +167,13 @@
         <protected>true</protected>
         <shortDescription>Discount_PercentageBetweenZeroAndHundred</shortDescription>
         <value>Percentage value must be between 0 than 100.</value>
+    </labels>
+    <labels>
+        <fullName>Discount_Setting_Error_Update</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Discount_Setting_Error_Update</shortDescription>
+        <value>Couldn&apos;t update discount settings</value>
     </labels>
     <labels>
         <fullName>Discount_StartBeforeEndDate</fullName>
@@ -489,6 +517,27 @@
         <protected>true</protected>
         <shortDescription>Previous</shortDescription>
         <value>Previous</value>
+    </labels>
+    <labels>
+        <fullName>PriceBook_Error_NotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PriceBook_Error_NotExist</shortDescription>
+        <value>Price Book does not exist</value>
+    </labels>
+    <labels>
+        <fullName>Product_Error_ComplaintNotExist</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Product_Error_ComplaintNotExist</shortDescription>
+        <value>Complaint product does not exist</value>
+    </labels>
+    <labels>
+        <fullName>Retry_Couldnt_Send_Emails</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Retry_Couldnt_Send_Emails</shortDescription>
+        <value>There was an error during sending the email with information about failed products integration</value>
     </labels>
     <labels>
         <fullName>Save</fullName>

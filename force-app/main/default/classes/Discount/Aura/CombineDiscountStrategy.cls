@@ -21,7 +21,6 @@ public class CombineDiscountStrategy implements DiscountStrategy {
             if(calculator.calculateDiscount() < initialPrice * 0.5) {
                 break;
             }
-            //calculator = OrderDiscountFactory.getDecorator(discount.Discount_Type__c, calculator, discount);
         }
         discountOrderDTO.priceAfterDiscount = calculator.calculateDiscount().setScale(2, RoundingMode.HALF_UP);
         discountOrderDTO.discountIds = discountIds;

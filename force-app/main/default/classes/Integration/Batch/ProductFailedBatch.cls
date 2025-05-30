@@ -25,7 +25,6 @@ public with sharing class ProductFailedBatch implements Database.Batchable<SObje
         ];
 
         if (failedProducts.isEmpty()) {
-            System.debug('No records with 3 or more retries found.');
             return;
         }
 
@@ -34,7 +33,7 @@ public with sharing class ProductFailedBatch implements Database.Batchable<SObje
         try {
             retryEmail.sendEmail();
         } catch (Exception ex) {
-            throw new HandledException('Couldn\'t send emails');
+            throw new HandledException(Label.Retry_Couldnt_Send_Emails);
         }
 
     }
@@ -60,7 +59,7 @@ public with sharing class ProductFailedBatch implements Database.Batchable<SObje
 
                 List<Logger.ResponseDTO> productLogs = (List<Logger.ResponseDTO>) JSON.deserialize(response.getBody(), List<Logger.ResponseDTO>.class);
 
-                if(productLogs.get(0).status == 'Failed') {
+                if(productLogs.get(0).status == Utils.LOG.STATUS.FAILED) {
                     productLogger.Retry__c += 1;
                 } else {
                     productLogger.Status__c = productLogs.get(0).status;

@@ -39,6 +39,10 @@ public abstract class Factory {
                 .returnPercentage(5);
     }
 
+    protected OrderDiscountBuilder prepareOrderDiscount() {
+        return new OrderDiscountBuilder();
+    }
+
     protected PricebookBuilder preparePricebook() {
         return new PricebookBuilder(
                 'Event Management Price Book'
@@ -110,6 +114,16 @@ public abstract class Factory {
                 .save()
                 .build();
         return orderItem;
+    }
+
+    public virtual Order_Discount__c createOrderDiscount(String orderId, String discountId) {
+        Order_Discount__c orderDiscount = prepareOrderDiscount()
+                .discount(discountId)
+                .order(orderId)
+                .save()
+                .build();
+
+        return orderDiscount;
     }
 
     public virtual Case_Product_Approval__e createCaseProductApproval() {

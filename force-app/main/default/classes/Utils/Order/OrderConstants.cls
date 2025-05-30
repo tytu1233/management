@@ -6,6 +6,8 @@ public class OrderConstants {
 
     public Errors ERRORS { get { return new Errors(); } }
     public Status STATUS { get { return new Status(); } }
+    public PaymentStatus PAYMENT_STATUS { get { return new PaymentStatus(); } }
+    public Stage STAGE { get { return new Stage(); } }
 
     public class Errors {
         public String PreventCreation { get { return  Label.Prevent_Create_Order; } }
@@ -20,5 +22,13 @@ public class OrderConstants {
     public class Status {
         public String Draft { get { return 'Draft'; } }
         public String Activated { get { return 'Activated'; } }
+    }
+
+    public class PaymentStatus {
+        public String Waiting { get { return 'Waiting'; } }
+    }
+
+    public class Stage {
+        public String ClosedWon { get { return 'Closed Won'; } }
     }
 }

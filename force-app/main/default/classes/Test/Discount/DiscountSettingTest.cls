@@ -43,8 +43,8 @@ private class DiscountSettingTest {
         try {
             DiscountSettings.updateDiscountSetting(metadataType);
             Assert.isFalse(false, 'Expected AuraHandledException for deployment failure');
-        } catch (AuraHandledException e) {
-            Assert.areEqual('Script-thrown exception', e.getMessage(), 'Exception message should match');
+        } catch (Exception e) {
+            Assert.areEqual('Couldn\'t update discount settings', e.getMessage(), 'Exception message should match');
         }
         Test.stopTest();
     }
@@ -57,8 +57,8 @@ private class DiscountSettingTest {
         try {
             DiscountSettings.updateDiscountSetting(metadataType);
             System.assert(false, 'Expected AuraHandledException for invalid input');
-        } catch (AuraHandledException e) {
-            System.assertEquals('Script-thrown exception', e.getMessage(), 'Exception message should match');
+        } catch (Exception e) {
+            System.assertEquals('Couldn\'t update discount settings', e.getMessage(), 'Exception message should match');
         }
         Test.stopTest();
     }

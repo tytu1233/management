@@ -2,7 +2,6 @@
  * Created by patryk.witkowski_bri on 5/14/2025.
  */
 
-//TODO: DODAC SAVE
 public class DiscountBuilder {
 
     private final Discount__c discount;

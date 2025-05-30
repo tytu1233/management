@@ -13,7 +13,7 @@ public class TA_Product_Update implements TriggerAction.AfterUpdate {
         }
 
         if(!products.isEmpty()) {
-            System.enqueueJob(new ProductExternalQueueable(products, 'PUT'));
+            System.enqueueJob(new ProductExternalQueueable(products, Utils.CALLOUT.METHOD.PUT));
         }
     }
 }

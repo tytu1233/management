@@ -16,7 +16,7 @@ public class HttpConfiguration {
 
     public static HttpRequest configureRequestPlatform(Case_Notification__e caseNotification) {
         String targetEndpoint = 'callout:SalesforceIntegrationCredentialv2/services/data/v63.0/sobjects/Case_Notification__e';
-        String method = 'POST';
+        String method = Utils.CALLOUT.METHOD.POST;
 
         HttpRequest request = new HttpRequest();
         request.setMethod(method);
