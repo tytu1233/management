@@ -11,12 +11,12 @@ public with sharing class MomentumPriceBookSingleton {
         List<Pricebook2> pb = [
                 SELECT Id
                 FROM Pricebook2
-                WHERE Name = 'Event Management Price Book'
+                WHERE Name = :Utils.PRICE_BOOK.NAME.MomentumEventPriceBook
                 AND IsActive = TRUE
                 LIMIT 1
         ];
         if(pb.isEmpty()) {
-            throw new AuraHandledException('Price Book does not exist');
+            throw new AuraHandledException(Utils.PRICE_BOOK.ERROR.NotExist);
         }
         this.priceBookId = pb.get(0).Id;
     }

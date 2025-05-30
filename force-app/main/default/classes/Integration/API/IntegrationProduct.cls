@@ -44,7 +44,7 @@ global with sharing class IntegrationProduct {
         } finally {
             response.statusCode = code;
             response.responseBody = Blob.valueOf(JSON.serialize(responseLogs));
-            Logger.logProductRest(productLogs, 'POST');
+            Logger.logProductRest(productLogs, Utils.CALLOUT.METHOD.POST);
         }
     }
 

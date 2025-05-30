@@ -12,7 +12,7 @@ public class TA_Product_Create implements TriggerAction.AfterInsert {
         }
 
         if (!products.isEmpty()) {
-            System.enqueueJob(new ProductExternalQueueable(products, 'POST'));
+            System.enqueueJob(new ProductExternalQueueable(products, Utils.CALLOUT.METHOD.POST));
         }
     }
 }
