@@ -100,7 +100,7 @@ public with sharing class OrderService {
             productIds.add(orderItem.Product2Id);
         }
 
-        return [SELECT Id, Name, Base_Price__c, IsExternal__c, ExternalId__c FROM Product2 WHERE Id IN :productIds AND Name != 'Complaint'];
+        return [SELECT Id, Name, Base_Price__c, IsExternal__c, ExternalId__c FROM Product2 WHERE Id IN :productIds AND Name != :Utils.PRODUCT.NAME.Complaint];
     }
 
     public class ProductOrderDTO {

@@ -12,4 +12,5 @@ public class Utils {
     public static CaseConstants CASES { get { return new CaseConstants(); } }
     public static CaseProductConstants CASE_PRODUCT { get { return new CaseProductConstants(); } }
     public static CalloutConstants CALLOUT { get { return new CalloutConstants(); } }
+    public static ApprovalConstants APPROVAL { get { return new ApprovalConstants(); } }
 }

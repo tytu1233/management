@@ -17,8 +17,8 @@ public with sharing class CaseProductApprovalService {
         for(Case_Product__c caseProduct : caseProducts) {
             if(!caseProduct.ToExternal__c) {
                 Approval.ProcessSubmitRequest request = new Approval.ProcessSubmitRequest();
-                request.setComments('look into that refund request');
-                request.setProcessDefinitionNameOrId('Case_Product_Approval_Process');
+                request.setComments(Utils.APPROVAL.COMMENT.CaseProductComment);
+                request.setProcessDefinitionNameOrId(Utils.APPROVAL.NAME.CaseProductApproval);
                 request.setSkipEntryCriteria(false);
                 request.setObjectId(caseProduct.Id);
                 request.setNextApproverIds(new List<Id>{
