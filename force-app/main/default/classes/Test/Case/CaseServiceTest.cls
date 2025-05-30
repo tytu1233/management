@@ -41,8 +41,7 @@ public class CaseServiceTest {
         List<Order> orders = [SELECT Id, Case__c FROM Order];
         new DataGenerator().createExternalProduct();
         List<Product2> products = [SELECT Id, Name, IsExternal__c, ExternalId__c FROM Product2];
-        System.debug('SHOW ME WHAT U GOT INSIDE');
-        System.debug(products);
+
 
         CaseService.CaseEventDTO caseEventDTO = new CaseService.CaseEventDTO();
         caseEventDTO.description = 'Test description';

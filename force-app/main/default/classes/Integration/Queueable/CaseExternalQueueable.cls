@@ -16,11 +16,7 @@ public with sharing class CaseExternalQueueable implements Queueable, Database.A
         HttpRequest request = HttpConfiguration.configureRequestPlatform(this.caseNotification);
         try {
 
-            HttpResponse response = http.send(request);
-
-            if (response.getStatusCode() == 200 || response.getStatusCode() == 201) {
-                System.debug('Succeed');
-            }
+            http.send(request);
         } catch (Exception ex) {
             Logger.ResponseDTO responseDTO = createNetworkProblemResponseLog(this.caseNotification.Id, ex.getMessage());
             caseLog = createLog(request.getBody(), this.caseNotification.Id, new List<Logger.ResponseDTO>{responseDTO});

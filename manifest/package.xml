@@ -278,6 +278,13 @@
         <members>LWC_Case_ChoosePriority</members>
         <members>LWC_Case_Priority</members>
         <members>Case_FailedCreate</members>
+        <members>CaseProducts_NoRecords</members>
+        <members>Case_Error_RecordNotExist</members>
+        <members>Discount_Metadata_Update_Failed</members>
+        <members>Discount_Setting_Error_Update</members>
+        <members>PriceBook_Error_NotExist</members>
+        <members>Product_Error_ComplaintNotExist</members>
+        <members>Retry_Couldnt_Send_Emails</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -298,7 +305,16 @@
         <name>NamedCredential</name>
     </types>
     <types>
+        <members>Case_Product__c.Case_Product_Approval_Process</members>
         <name>ApprovalProcess</name>
+    </types>
+    <types>
+        <members>Case.ChangePriorityToHigh</members>
+        <members>Case_Product__c.Change_status_to_closed</members>
+        <members>Case_Product__c.Status_changed_to_approved</members>
+        <members>Case_Product__c.Status_changed_to_closed</members>
+        <members>Case_Product__c.Status_changed_to_rejected</members>
+        <name>WorkflowFieldUpdate</name>
     </types>
     <version>63.0</version>
 </Package>

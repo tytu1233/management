@@ -10,13 +10,13 @@ public class ComplaintProductSingleton {
         List<Product2> pbE = [
                 SELECT Id
                 FROM Product2
-                WHERE Name = 'Complaint'
+                WHERE Name = :Utils.PRODUCT.NAME.Complaint
                 AND IsActive = FALSE
                 LIMIT 1
         ];
 
         if(pbE.isEmpty()) {
-            throw new HandledException('Complaint product does not exist');
+            throw new HandledException(Utils.PRODUCT.ERROR.ComplaintNotExist);
         }
         this.complaintProductId = pbE.get(0).Id;
     }
