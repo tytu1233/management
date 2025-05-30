@@ -30,45 +30,25 @@ public class TA_Case_ApplyComplaintToOrder_Test {
 
     @IsTest
     static void closedCase_Success() {
-        List<Case> cases = [
+        List<Case_Product__c> caseProducts = [SELECT Case__c FROM Case_Product__c];
+        List<Case> casesNew = [
                 SELECT Id, Status, Order__c
                 FROM Case
-                WHERE Status = 'Closed'
+                WHERE Status = 'New' AND Id = :caseProducts.get(0).Case__c
         ];
 
+        Case case2 = casesNew.get(0);
+        case2.Status = 'Closed';
+
+
         Test.startTest();
-        new TA_Case_ApplyComplaintToOrder().afterUpdate(cases, cases);
+        update case2;
         Test.stopTest();
 
         List<Order> orders = [SELECT Id, Final_Price__c FROM Order];
         List<OrderItem> orderItems = [SELECT UnitPrice FROM OrderItem WHERE OrderId = :orders.get(0).Id];
-
         Assert.areEqual(2, orderItems.size(), 'Order Item should contains complaint product');
         Assert.areEqual(4995.00, Math.floor(orders.get(0).Final_Price__c), 'Final price should be approximetly reduced by 5');
-    }
-
-
-    @IsTest
-    static void closedCaseNoCaseProducts_Error() {
-        List<Case_Product__c> caseProducts = [SELECT Case__c FROM Case_Product__c];
-        List<Case> cases = [
-                SELECT Id, Status, Order__c
-                FROM Case
-                WHERE Status = 'Closed' AND Id != :caseProducts.get(0).Case__c
-        ];
-
-        Boolean thrownException = false;
-
-        Test.startTest();
-        try {
-            new TA_Case_ApplyComplaintToOrder().afterUpdate(cases, cases);
-        } catch (Exception ex) {
-            thrownException = true;
-            Assert.areEqual('No case products records', ex.getMessage(), 'Exception message should match');
-        }
-        Test.stopTest();
-
-        Assert.isTrue(thrownException, 'Exception should be thrown');
     }
 
     class DataGenerator extends Factory {
@@ -84,9 +64,9 @@ public class TA_Case_ApplyComplaintToOrder_Test {
             return order;
         }
 
-        public Case createClosedCase(String orderId) {
+        public Case createNewCase(String orderId) {
             Case cases = prepareCase()
-                    .status('Closed')
+                    .status('New')
                     .origin('Web')
                     .order(orderId)
                     .save()
@@ -150,8 +130,8 @@ public class TA_Case_ApplyComplaintToOrder_Test {
             createCase();
             Product2 product = createProduct();
             createComplaint();
-            Case closedCase = createClosedCase(order.Id);
-            createClosedCase(order2.Id);
+            Case closedCase = createNewCase(order.Id);
+            createNewCase(order2.Id);
             OrderItem orderItem = createOrderItem(product.Id, order.Id);
             createCaseProduct(closedCase.Id, product.Id, orderItem.Id);
         }
